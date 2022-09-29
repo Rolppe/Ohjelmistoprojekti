@@ -26,10 +26,18 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
+      - uses: actions/cache@v2
+        with:
+          path: |
+                  ~/.gradle/caches
+                  ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+                  ${{ runner.os }}-gradle-
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Edited the workflow to build APK
+        run: ls -a
+        #run: echo Edited the workflow to build APK
 
       #Setup gradle
       - name: Setup Gradle
@@ -40,8 +48,8 @@ jobs:
         run: ./gradlew build
 
       #Upload apk as artifact
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: '*.apk'
-          path: android/app/build/outputs/apk/release/
+      #- name: Upload Artifact
+      #  uses: actions/upload-artifact@v1
+      #  with:
+      #    name: '*.apk'
+      #    path: android/app/build/outputs/apk/release/
