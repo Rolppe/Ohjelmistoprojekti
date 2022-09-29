@@ -38,3 +38,10 @@ jobs:
       # Run Gradle build
       - name: Build APK
         run: ./gradlew build
+
+      #Upload apk as artifact
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: '*.apk'
+          path: android/app/build/outputs/apk/release/
