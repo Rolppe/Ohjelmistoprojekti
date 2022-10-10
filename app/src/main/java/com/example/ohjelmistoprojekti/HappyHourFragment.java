@@ -17,3 +17,5 @@ public class HappyHourFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_happy_hour, container, false);
     }
 }
+
+// Tickets -> shows cheapest point during the day to use a washing machine for example
