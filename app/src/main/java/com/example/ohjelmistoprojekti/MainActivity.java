@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         notificationManager.notify(1, builder.build());
     }
 
-    /*public void createChart(ArrayList array){
+    public void createChart(ArrayList array){
         BarChart barChart = findViewById(R.id.Chart1);
         BarDataSet barDataSet = new BarDataSet(array, "Electricity Price Dummy");
         BarData barData = new BarData(barDataSet);
@@ -99,6 +99,6 @@ public class MainActivity extends AppCompatActivity {
         barDataSet.setValueTextColor(Color.BLACK);
         barDataSet.setValueTextSize(16f);
         barChart.getDescription().setEnabled(true);
-    }*/
+    }
 
 }
