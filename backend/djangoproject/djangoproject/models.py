@@ -5,4 +5,4 @@ class Luokannimi(models.Model):
     muuttuja2 = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.muuttuja1 + ' ' + muuttuja2 # Lisää listanäkymään muuttujien nimet
+        return self.muuttuja1 + ' ' + self.muuttuja2 # Lisää listanäkymään muuttujien nimet
