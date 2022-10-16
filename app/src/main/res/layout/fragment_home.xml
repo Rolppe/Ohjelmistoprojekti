@@ -10,20 +10,11 @@
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/Chart1"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/Chart2"
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Chart1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
