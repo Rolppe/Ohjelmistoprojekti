@@ -19,14 +19,6 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_nav_menu" />
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/Chart1"
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
 
 </RelativeLayout>
