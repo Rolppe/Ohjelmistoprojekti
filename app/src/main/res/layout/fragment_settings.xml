@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".SettingsFragment">
+
+    <Switch
+        android:id="@+id/Notif_Switch"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="76dp"
+        android:background="#E6E6E6"
+        android:checked="false"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Notifications"
+        android:textOff="Off"
+        android:textOn="On"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/Price_Alert_Switch"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="#E6E6E6"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Price Alerts"
+        android:textOff="Off"
+        android:textOn="On"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Notif_Switch" />
+
+    <TextView
+        android:id="@+id/SettingsFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
