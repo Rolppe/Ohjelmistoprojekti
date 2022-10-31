@@ -1,5 +1,6 @@
 package com.example.ohjelmistoprojekti;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+
     public void createNotificationChannel(){
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
@@ -72,16 +74,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void buildNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(android.R.drawable.stat_notify_sync)
-                .setContentTitle("Electricity Prices")
-                .setContentText("Price has dipped below your input threshold")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.notify(1, builder.build());
-    }
 
 
 

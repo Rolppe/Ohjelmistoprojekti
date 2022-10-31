@@ -1,6 +1,10 @@
 package com.example.ohjelmistoprojekti;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -9,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 
 public class SettingsFragment extends Fragment {
@@ -27,25 +32,37 @@ public class SettingsFragment extends Fragment {
         notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){ ((MainActivity) getActivity()).buildNotification();  //If switch is on, do function. //APP notification at 2:30 pm - 3 pm
-                } else {                                                            //Else do nothing
-                }
-
-            }
-        });
-
-        priceAlertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                           //price change at 2pm, APP reads backend price                                              //If switch is on, and price is equal or lower than input price do function.
-                        ((MainActivity) getActivity()).buildNotification();
+                    Toast.makeText(view.getContext(), "Notifications are ON!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(view.getContext(), ReminderBroadcast.class);  //If switch is on, do function.
+                    // APP notification at 2:30 pm - 3 pm
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(view.getContext(), 0, intent, 0);
+                    AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 
-                } else {                                                //Else do nothing
-                }
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
+                            AlarmManager.INTERVAL_DAY, pendingIntent);
 
-            }
-        });
+                    priceAlertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                            if(isChecked){
+                                Toast.makeText(view.getContext(), "Price Alerts are ON!", Toast.LENGTH_SHORT).show();
+                                //price change at 2pm, APP reads backend price
+                                Intent intent = new Intent(view.getContext(), ReminderBroadcast.class);  //If switch is on, do function.
+                                // APP notification at 2:30 pm - 3 pm
+                                PendingIntent pendingIntent = PendingIntent.getBroadcast(view.getContext(), 0, intent, 0);
+                                AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+
+                                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
+                                        AlarmManager.INTERVAL_DAY, pendingIntent);
+
+
+                            } else {
+                                //Else do nothing
+                            }}});
+                } else {
+                    //Else do nothing
+                }}});
         return view;
 
     }

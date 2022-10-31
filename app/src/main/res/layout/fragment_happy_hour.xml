@@ -6,19 +6,12 @@
     android:background="@color/white"
     tools:context=".HomeFragment">
 
-    <TextView
-        android:id="@+id/HappyHourFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Happy Hour Fragment"
-        android:textSize="30sp"
-        android:layout_gravity="center"
-        />
 
-    <ScrollView
+    <ListView
+        android:id="@+id/HappHourList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ScrollView>
+        android:layout_height="match_parent" />
+
 
 </FrameLayout>
 
