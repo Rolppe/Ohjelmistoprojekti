@@ -1,57 +1,60 @@
-
 import datetime
 import requests
+import constant
 from defusedxml.ElementTree import fromstring
 
-def editRequest(**dateArgs):
-  year = str(dateArgs['year'])
-  month = dateArgs['month']
-  day = dateArgs['day']
-  global period_start
-  global period_end
+def editTimePeriods(time_now):
+  time = time_now + datetime.timedelta(days = 1)
+  period_start = time.strftime("%Y") + time.strftime("%m") + time.strftime("%d") + '0000'
+  period_end = time.strftime("%Y") + time.strftime("%m") + time.strftime("%d") + '2300'
 
-  if (month == 10 and day == 31):
-    month = '11'
-    day = '01'
+  return period_start, period_end
 
-  period_start = year + month + day + '0000'
-  period_end = year + month + day + '2300'
-  print("periodStart: " + period_start + "\nperiodEnd: " + period_end + '\n')
-
-TOKEN = '8523bda7-9f7c-4b73-8bea-d83f4fdb9159'
-period_start = '201701010000'
-period_end = '201701012300'
-
-requestUrl = 'https://web-api.tp.entsoe.eu/api?securityToken={}\
+def editUrl(token, start_p, end_p):
+  formatted_url = 'https://web-api.tp.entsoe.eu/api?securityToken={}\
 &documentType=A44&in_Domain=10YFI-1--------U&out_Domain=10YFI-1--------U\
-&periodStart={}&periodEnd={}'.format(TOKEN, period_start, period_end)
+&periodStart={}&periodEnd={}'.format(token, start_p, end_p)
 
-datapoints = []
-ns = {"wtf": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:0"}
+  return formatted_url
 
-print("\nperiodStart: " + period_start + "\nperiodEnd: " + period_end + '\n')
+def fetchPriceData(url):
+  datapoints = []
+  ns = {"wtf": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:0"}
+  x = requests.get(url)
 
-x = requests.get(requestUrl)
+  if (x.status_code == 200):
+    ET = fromstring(x.text)
 
-if (x.status_code == 200):
-  ET = fromstring(x.text)
+    for child in ET.findall(".//wtf:Point", ns):
+      if child.tag == '{urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:0}timeInterval':
+        continue
+      if len(child) == 2:
+        datapoints.append({'hour': child[0].text, 'price': child[1].text})
+  else:
+    print("An error occured while attempting to call the API")
 
-  for child in ET.findall(".//wtf:Point", ns):
-    if child.tag == '{urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:0}timeInterval':
-      continue
-    if len(child) == 2:
-      datapoints.append({'hour': child[0].text, 'price': child[1].text})
-else:
-  print("An error occured while attempting to call the API")
+  return datapoints
 
-if (len(datapoints) > 1):
-  print(datapoints)
+def combineShite():
+  current_datetime = datetime.datetime.now()
+  start_period, end_period = editTimePeriods(current_datetime)
+  print("Start period: " + start_period)
+  print("End period: " + end_period + "\n")
+
+  request_url = editUrl(constant.TOKEN, start_period, end_period)
+  print("Formatted URL: " + request_url + "\n")
+
+  datapoints = fetchPriceData(request_url)
+  if (len(datapoints) > 1):
+    print(datapoints)
+  else:
+    print("No datapoints to print\n")
 
 print('\nWaiting to call the timed function...\n')
 
 while 1:
   time = datetime.datetime.now()
 
-  if (time.strftime("%H") == '15' and time.strftime("%M") == '49'):
-    editRequest(year = time.year, month = time.month, day = time.day)
+  if (time.strftime("%H") == '14' and time.strftime("%M") == '33'):
+    combineShite()
     break
