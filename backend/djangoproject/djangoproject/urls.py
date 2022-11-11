@@ -19,5 +19,6 @@ from djangoproject import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("jsonulos/", views.LuokannimiLista)
+    path("jsonulos/", views.LuokannimiLista),
+    path("pricejson/", views.PriceRequestHandler)
 ]
