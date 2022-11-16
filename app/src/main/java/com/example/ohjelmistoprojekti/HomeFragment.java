@@ -111,5 +111,5 @@ public class HomeFragment extends Fragment {
         dummyBarData.add(new BarEntry(23f, 17));
         dummyBarData.add(new BarEntry(24f, 17));
     }
-    //a
+
 }

@@ -20,5 +20,4 @@ public class HappyHourItem {
     public String getTo() {
         return mTo;
     }
-    //a
 }

@@ -15,7 +15,7 @@
     <EditText
         android:id="@+id/editFrom"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_alignTop="@+id/editTitle"
         android:layout_marginTop="50dp"
         android:hint="00:00"
