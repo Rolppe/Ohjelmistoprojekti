@@ -62,5 +62,5 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
         // recycler view wants to know the number of items we want displayed
         return happyHourList.size();
     }
-
+    //a
 }

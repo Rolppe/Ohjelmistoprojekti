@@ -72,6 +72,7 @@ public class HappyHourFragment extends Fragment implements HH_Dialog.HH_DialogLi
         happyHourList.add(new HappyHourItem("Title 10", "11:00", "13:00"));
         happyHourList.add(new HappyHourItem("Title 11", "13:00", "15:00"));
         happyHourList.add(new HappyHourItem("Title 12", "15:00", "17:00"));
+        //a
     }
 
 
