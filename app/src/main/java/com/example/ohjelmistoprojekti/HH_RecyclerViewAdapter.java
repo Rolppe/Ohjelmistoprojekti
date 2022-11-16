@@ -21,16 +21,14 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
         // grabbing views from recycler_view_row layout file
         // acting as an onCreate method (bad analogy)
 
-        ImageView imageView;
-        TextView tvTitle, tvFrom, tvTo;
+        TextView mTitle, mFrom, mTo;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.imageView);
-            tvTitle = itemView.findViewById(R.id.programTitle);
-            tvFrom = itemView.findViewById(R.id.fromHourTextView);
-            tvTo = itemView.findViewById(R.id.toHourTextView);
+            mTitle = itemView.findViewById(R.id.programTitle);
+            mFrom = itemView.findViewById(R.id.fromHourTextView);
+            mTo = itemView.findViewById(R.id.toHourTextView);
         }
     }
 
@@ -52,9 +50,9 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
     public void onBindViewHolder(@NonNull HH_RecyclerViewAdapter.MyViewHolder holder, int position) {
         // assigning values to views created in the recycler_view_row layout file
         // based on the position of the recycler view
-        holder.tvTitle.setText(happyHourList.get(position).getTitle());
-        holder.tvFrom.setText(happyHourList.get(position).getFrom());
-        holder.tvTo.setText(happyHourList.get(position).getTo());
+        holder.mTitle.setText(happyHourList.get(position).getTitle());
+        holder.mFrom.setText(happyHourList.get(position).getFrom());
+        holder.mTo.setText(happyHourList.get(position).getTo());
     }
 
     @Override
@@ -62,5 +60,4 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
         // recycler view wants to know the number of items we want displayed
         return happyHourList.size();
     }
-    //a
 }
