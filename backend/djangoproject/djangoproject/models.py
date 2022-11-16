@@ -11,7 +11,7 @@ class Luokannimi(models.Model):
 
 class DayPrices(models.Model):
   
-    Time = models.DateTimeField(auto_now_add=True, blank=True)
+    Date = models.DateField(("Date"), default=datetime.date.today)
     H00 = models.FloatField()
     H01 = models.FloatField()
     H02 = models.FloatField()
