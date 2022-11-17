@@ -29,6 +29,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:8000',
+  'http://localhost:3000',
+)
+
 CSRF_TRUSTED_ORIGINS = ['https://ohjelmistoprojekti-production.up.railway.app']
 
 
@@ -37,6 +43,7 @@ CSRF_TRUSTED_ORIGINS = ['https://ohjelmistoprojekti-production.up.railway.app']
 INSTALLED_APPS = [
     "djangoproject",
     "rest_framework",
+    "corsheaders",
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -47,6 +54,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
