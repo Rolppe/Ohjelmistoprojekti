@@ -12,8 +12,33 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
+import org.json.JSONException;
+import org.json.JSONObject;
+import android.widget.Toast;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
     HomeFragment homeFragment = new HomeFragment();                                     //
     HappyHourFragment happy_hourFragment = new HappyHourFragment();                     //
-    SettingsFragment settingsFragment = new SettingsFragment();                         //
+    SettingsFragment settingsFragment = new SettingsFragment();
+    String url = "https://ohjelmistoprojekti-production.up.railway.app/pricejson/";
+    private RequestQueue mRequestQueue;
+    private StringRequest mStringRequest;
+    private static final String TAG = MainActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         createNotificationChannel();
+        sendAndRequestResponse();
+
+        // Access the RequestQueue through your singleton class.
+        // MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
         replaceFragment(homeFragment);                                                  // APPia avatessa se avaa koti fragmentin
         bottomNavigationView = findViewById(R.id.bottomNavigationView);                 // Tunnistaa navigointipalkin
@@ -71,6 +104,48 @@ public class MainActivity extends AppCompatActivity {
             channel.setDescription(description);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void sendAndRequestResponse() {
+
+        //RequestQueue initialized
+        mRequestQueue = Volley.newRequestQueue(this);
+
+        //String Request initialized
+        mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Toast.makeText(getApplicationContext(),"Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+                // Kutsutaan JSON-parsintafunktiota
+                parseJsonAndUpdateUI(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.i(TAG,"Error :" + error.toString());
+            }
+        });
+
+        mRequestQueue.add(mStringRequest);
+    }
+
+    private void parseJsonAndUpdateUI(String response) {
+        try {
+            JSONObject rootObject = new JSONObject(response);
+
+            /*
+            // Convertoidaan floatiksi
+            temperature = (float) rootObject.getJSONObject("main").getDouble("temp");
+            windVelocity = (float) rootObject.getJSONObject("wind").getDouble("speed");
+            description = rootObject.getJSONArray("weather").getJSONObject(0).getString("main");
+            */
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Virhe JSON parsinnassa", Toast.LENGTH_SHORT).show();
         }
     }
 }
