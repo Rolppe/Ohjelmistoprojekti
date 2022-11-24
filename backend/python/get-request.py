@@ -55,6 +55,6 @@ print('\nWaiting to call the timed function...\n')
 while 1:
   time = datetime.datetime.now()
 
-  if (time.strftime("%H") == '14' and time.strftime("%M") == '45'):
+  if (time.strftime("%H") == '12' and time.strftime("%M") == '28'):
     combineShite()
     break
