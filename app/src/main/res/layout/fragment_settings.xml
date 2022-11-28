@@ -5,7 +5,6 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".SettingsFragment">
 
     <Switch
@@ -13,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="76dp"
-        android:background="#E6E6E6"
+        android:background="@color/design_default_color_on_primary"
         android:checked="false"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -31,7 +30,7 @@
         android:id="@+id/Price_Alert_Switch"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="#E6E6E6"
+        android:background="@color/design_default_color_on_primary"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="Price Alerts"
@@ -57,7 +56,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
-
+    <EditText
+        android:id="@+id/etPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:hint="Set Target Price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Price_Alert_Switch"  />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

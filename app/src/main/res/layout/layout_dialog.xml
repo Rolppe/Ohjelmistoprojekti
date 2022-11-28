@@ -2,31 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTitle"
+        android:id="@+id/enterTitle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:hint="Title" />
 
     <EditText
-        android:id="@+id/editFrom"
+        android:id="@+id/enterFrom"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignTop="@+id/editTitle"
-        android:layout_marginTop="50dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/enterTitle"
+        android:layout_marginTop="60dp"
         android:hint="00:00"
-        android:inputType="datetime" />
+        android:inputType="time" />
 
     <EditText
-        android:id="@+id/editTo"
+        android:id="@+id/enterTo"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignTop="@+id/editFrom"
-        android:layout_marginTop="50dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/enterFrom"
+        android:layout_marginTop="60dp"
         android:hint="00:00"
-        android:inputType="datetime" />
+        android:inputType="time" />
+
+
 </RelativeLayout>

@@ -26,10 +26,11 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mTitle = itemView.findViewById(R.id.programTitle);
-            mFrom = itemView.findViewById(R.id.fromHourTextView);
-            mTo = itemView.findViewById(R.id.toHourTextView);
+            mTitle = itemView.findViewById(R.id.editTitle);
+            mFrom = itemView.findViewById(R.id.editFrom);
+            mTo = itemView.findViewById(R.id.editTo);
         }
+
     }
 
     public HH_RecyclerViewAdapter(Context context, ArrayList<HappyHourItem> happyHourList){
@@ -41,8 +42,7 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
     @Override
     public HH_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflating layout and giving a look to the rows
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.recycler_view_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_row, parent, false);
         return new HH_RecyclerViewAdapter.MyViewHolder(view);
     }
 
@@ -60,4 +60,6 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
         // recycler view wants to know the number of items we want displayed
         return happyHourList.size();
     }
+
+
 }

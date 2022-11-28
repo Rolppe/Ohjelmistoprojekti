@@ -1,9 +1,6 @@
 package com.example.ohjelmistoprojekti;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -32,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         createNotificationChannel();
 
         replaceFragment(homeFragment);                                                  // APPia avatessa se avaa koti fragmentin
@@ -50,10 +46,8 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(settingsFragment);
                     break;
             }
-
             return true;
         });
-
     }
 
     private void replaceFragment(Fragment fragment){
@@ -63,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.flFragment,fragment);
         fragmentTransaction.commit();
     }
-
 
     public void createNotificationChannel(){
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){

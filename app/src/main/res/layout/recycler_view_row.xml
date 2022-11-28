@@ -29,7 +29,7 @@
             app:tint="@color/blueBlack" />
 
         <TextView
-            android:id="@+id/programTitle"
+            android:id="@+id/editTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -39,15 +39,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/fromHourTextView"
+            android:id="@+id/editFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="66dp"
             android:text="Change"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/programTitle"
-            app:layout_constraintTop_toBottomOf="@+id/programTitle" />
+            app:layout_constraintStart_toStartOf="@+id/editTitle"
+            app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
         <TextView
             android:id="@+id/toTextView"
@@ -58,7 +58,7 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/fromTextView"
-            app:layout_constraintTop_toBottomOf="@+id/programTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
         <TextView
             android:id="@+id/fromTextView"
@@ -69,12 +69,12 @@
             android:text="From:"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fromHourTextView"
+            app:layout_constraintEnd_toStartOf="@+id/editFrom"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/programTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
         <TextView
-            android:id="@+id/toHourTextView"
+            android:id="@+id/editTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -82,7 +82,7 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/toTextView"
-            app:layout_constraintTop_toBottomOf="@+id/programTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
