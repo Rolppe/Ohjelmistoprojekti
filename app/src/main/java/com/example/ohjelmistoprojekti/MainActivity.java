@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
             continue;
         }
-
+            
         StringBuilder builder = new StringBuilder();
 
         for(String k : this.pricesArray) {
