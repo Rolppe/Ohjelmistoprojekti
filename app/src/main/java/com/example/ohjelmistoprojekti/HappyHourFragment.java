@@ -6,6 +6,9 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +20,15 @@ import java.util.ArrayList;
 
 public class HappyHourFragment extends Fragment {
 
-    private ArrayList<HappyHourItem> happyHourList;
+    ArrayList<HappyHourItem> happyHourList;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Button addProg_btn;
 
+    private String title = "1";
+    private String from = "2";
+    private String to = "3";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,29 +58,40 @@ public class HappyHourFragment extends Fragment {
     }
 
     public void createDialog(){
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.layout_dialog, null, false);
-        TextView newTitle = (TextView) getActivity().findViewById(R.id.editTitle);
-        TextView newFrom = (TextView) getActivity().findViewById(R.id.editFrom);
-        TextView newTo = (TextView) getActivity().findViewById(R.id.editTo);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
-                .setTitle("Add New Program")
-                .setView(view)
-                .setPositiveButton("Add", null)
-                .setNegativeButton("Cancel", null)
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+                .setTitle("Add New Program");
+
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_dialog, (ViewGroup) getView(), false);
+
+        final EditText inputTitle = (EditText) view.findViewById(R.id.enterTitle);
+        final EditText inputFrom = (EditText) view.findViewById(R.id.enterFrom);
+        final EditText inputTo = (EditText) view.findViewById(R.id.enterTo);
+
+         builder.setView(view)
+                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //get data from dialog
+                        title = inputTitle.getText().toString();
+                        from = inputFrom.getText().toString();
+                        to = inputTo.getText().toString();
+
+                        //update RecyclerView
+                        HappyHourItem happyHourItem = new HappyHourItem(title, from, to);
+                        happyHourList.add(happyHourItem);
+                        mAdapter.notifyDataSetChanged();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                })
                 .setCancelable(true);
 
         final AlertDialog dialog = builder.create();
         dialog.show();
-
-        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //update RecyclerView
-                happyHourList.add(new HappyHourItem(newTitle.toString(), newFrom.toString(), newTo.toString()));
-                dialog.dismiss();
-            }
-        });
     }
 }
 

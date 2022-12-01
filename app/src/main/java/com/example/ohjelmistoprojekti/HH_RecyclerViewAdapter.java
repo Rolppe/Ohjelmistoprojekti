@@ -61,5 +61,4 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
         return happyHourList.size();
     }
 
-
 }
