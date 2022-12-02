@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,9 +28,10 @@ public class HappyHourFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private Button addProg_btn;
 
-    private String title = "1";
-    private String from = "2";
-    private String to = "3";
+    private String title = "";
+    private String from = "";
+    private String to = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +77,11 @@ public class HappyHourFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //get data from dialog
+
+                        if(inputTitle.length() == 0) {
+                            inputTitle.setError("Please input Title!");
+                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT);
+                        }
                         title = inputTitle.getText().toString();
                         int fHour = inputFrom.getHour();
                         int fMinute = inputFrom.getMinute();
