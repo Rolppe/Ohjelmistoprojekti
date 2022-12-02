@@ -4,9 +4,9 @@ public class HappyHourItem {
     private String mTitle, mFrom, mTo;
 
     public HappyHourItem(String title, String from, String to) {
-        this.mTitle = title;
-        this.mFrom = from;
-        this.mTo = to;
+        mTitle = title;
+        mFrom = from;
+        mTo = to;
     }
 
     public String getTitle(){
@@ -20,4 +20,5 @@ public class HappyHourItem {
     public String getTo() {
         return mTo;
     }
+
 }
