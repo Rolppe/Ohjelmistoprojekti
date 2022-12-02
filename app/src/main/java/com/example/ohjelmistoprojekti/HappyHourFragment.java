@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.util.ArrayList;
 
@@ -64,8 +65,10 @@ public class HappyHourFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_dialog, (ViewGroup) getView(), false);
 
         final EditText inputTitle = (EditText) view.findViewById(R.id.enterTitle);
-        final EditText inputFrom = (EditText) view.findViewById(R.id.enterFrom);
-        final EditText inputTo = (EditText) view.findViewById(R.id.enterTo);
+        final TimePicker inputFrom = (TimePicker) view.findViewById(R.id.enterFrom);
+        inputFrom.setIs24HourView(true);
+        final TimePicker inputTo = (TimePicker) view.findViewById(R.id.enterTo);
+        inputTo.setIs24HourView(true);
 
          builder.setView(view)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
@@ -73,8 +76,12 @@ public class HappyHourFragment extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //get data from dialog
                         title = inputTitle.getText().toString();
-                        from = inputFrom.getText().toString();
-                        to = inputTo.getText().toString();
+                        int fHour = inputFrom.getHour();
+                        int fMinute = inputFrom.getMinute();
+                        from = (fHour + ":" + fMinute);
+                        int iHour = inputTo.getHour();
+                        int iMinute = inputTo.getMinute();
+                        to = (iHour + ":" + iMinute);
 
                         //update RecyclerView
                         HappyHourItem happyHourItem = new HappyHourItem(title, from, to);
