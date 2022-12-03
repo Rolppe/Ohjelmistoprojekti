@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     String CHANNEL_ID = "NotificationChannelOne";                                       //Notifikaatio kanavan Id
     String CHANNEL_NAME = "BasicNotification";                                          //Notifikaatio kanavan nimi
     String description = "This is a Demo Notification with no proper functionality";    //Notifikaatio kanavan kuvaus
+    String[] pricesToday;
 
     BottomNavigationView bottomNavigationView;                                          //Navigointipalkin viite
 
@@ -46,25 +47,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] prices = new String[24];
-        Singleton singleton = Singleton.getInstance(getApplicationContext());
-        prices = singleton.getPrices();
+        Singleton singleton = Singleton.getInstance(MainActivity.this);
+        singleton.getPriceData(MainActivity.this, new Singleton.VolleyResponseListener() {
+            @Override
+            public void onError(String message) {
+
+            }
+
+            @Override
+            public void onResponse(String[] pricesArray) {
+                pricesToday= pricesArray;
+                toastPrices(pricesToday,"MainActivity");
+            }
+        });
 
         createNotificationChannel();
         // sendAndRequestResponse();
-        /*
-        while (this.pricesArray[0] == null) {
 
-            continue;
-        }
 
-        StringBuilder builder = new StringBuilder();
 
-        for(String k : this.pricesArray) {
-
-            builder.append("").append(k).append(" ");
-        }
-        */
 
         // Access the RequestQueue through your singleton class.
         // MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
@@ -103,5 +104,15 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+
+
+    private void toastPrices(String[] pricesArray, String additionalText) {
+        StringBuilder builder = new StringBuilder();
+        for (String k : pricesArray) {
+            builder.append("").append(k).append(" ");
+        }
+        Toast.makeText(MainActivity.this, additionalText+"builder: " + builder, Toast.LENGTH_LONG).show();
+
     }
 }
