@@ -12,6 +12,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Singleton {
     String url = "https://ohjelmistoprojekti-production.up.railway.app/pricejson/";
     String[] pricesArray = new String[24];
@@ -33,11 +37,8 @@ public class Singleton {
         void onResponse(String[] pricesArray);
     }
 
-//  public void getPrices(VolleyResponseListener volleyResponseListener){
-//      volleyResponseListener.onResponse(pricesArray);
-//  }
-//  private static Singleton mSingleton;
-//
+
+
 
     public static Singleton getInstance(Context context) {
         if (instance == null) {
@@ -56,6 +57,7 @@ public class Singleton {
                 response -> {
                     // Näytetään response toastina ruudulla
                     //Toast.makeText(context, "RESPONSE: "+response, Toast.LENGTH_LONG).show();
+                    String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());                    parseJsonAndUpdateUI(response, context, "2022-12-03");
                     parseJsonAndUpdateUI(response, context, "2022-12-03");
 
                     volleyResponseListener.onResponse(pricesArray);
