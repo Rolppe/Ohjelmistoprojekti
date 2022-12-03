@@ -18,7 +18,7 @@ import java.util.Locale;
 
 public class Singleton {
     String url = "https://ohjelmistoprojekti-production.up.railway.app/pricejson/";
-    String[] pricesArray = new String[24];
+    Double[] pricesArray = new Double[24];
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private static Context context;
@@ -33,12 +33,8 @@ public class Singleton {
 
     public interface VolleyResponseListener {
         void onError(String message);
-
-        void onResponse(String[] pricesArray);
+        void onResponse(Double[] pricesArray);
     }
-
-
-
 
     public static Singleton getInstance(Context context) {
         if (instance == null) {
@@ -47,19 +43,15 @@ public class Singleton {
         return instance;
     }
 
-
     public void getPriceData(Context context, VolleyResponseListener volleyResponseListener) {
-        // Toast.makeText(context, "getPriceData -funktion sisällä!", Toast.LENGTH_SHORT).show();
         // Haetaan hintatiedot palvelimelta (JSON)
         String url = "https://ohjelmistoprojekti-production.up.railway.app/pricejson/";
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
-                    // Näytetään response toastina ruudulla
                     //Toast.makeText(context, "RESPONSE: "+response, Toast.LENGTH_LONG).show();
                     String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());                    parseJsonAndUpdateUI(response, context, "2022-12-03");
                     parseJsonAndUpdateUI(response, context, "2022-12-03");
-
                     volleyResponseListener.onResponse(pricesArray);
                 },
                 error -> {
@@ -78,40 +70,33 @@ public class Singleton {
             JSONArray arr = obj.getJSONArray("Prices"); // notice that `"posts": [...]`
             for (int i = 0; i < arr.length(); i++) {
 
-                // pricesToday[0] = arr.getJSONObject(i).getString("H00");
                 String date = arr.getJSONObject(i).getString("Date");
-                //Toast.makeText(context, "Data" + date, Toast.LENGTH_LONG).show();
-                //Toast.makeText(context, "Parameter" +time, Toast.LENGTH_LONG).show();
-
-                // Toast.makeText(this, arr.getJSONObject(i).getString("H00"), Toast.LENGTH_LONG).show();
 
                 if (date.equals(time)) {
-
-                    //Toast.makeText(context, "Inside IF", Toast.LENGTH_LONG).show();
-                    pricesArray[0] = arr.getJSONObject(i).getString("H00");
-                    pricesArray[1] = arr.getJSONObject(i).getString("H01");
-                    pricesArray[2] = arr.getJSONObject(i).getString("H02");
-                    pricesArray[3] = arr.getJSONObject(i).getString("H03");
-                    pricesArray[4] = arr.getJSONObject(i).getString("H04");
-                    pricesArray[5] = arr.getJSONObject(i).getString("H05");
-                    pricesArray[6] = arr.getJSONObject(i).getString("H06");
-                    pricesArray[7] = arr.getJSONObject(i).getString("H07");
-                    pricesArray[8] = arr.getJSONObject(i).getString("H08");
-                    pricesArray[9] = arr.getJSONObject(i).getString("H09");
-                    pricesArray[10] = arr.getJSONObject(i).getString("H10");
-                    pricesArray[11] = arr.getJSONObject(i).getString("H11");
-                    pricesArray[12] = arr.getJSONObject(i).getString("H12");
-                    pricesArray[13] = arr.getJSONObject(i).getString("H13");
-                    pricesArray[14] = arr.getJSONObject(i).getString("H14");
-                    pricesArray[15] = arr.getJSONObject(i).getString("H15");
-                    pricesArray[16] = arr.getJSONObject(i).getString("H16");
-                    pricesArray[17] = arr.getJSONObject(i).getString("H17");
-                    pricesArray[18] = arr.getJSONObject(i).getString("H18");
-                    pricesArray[19] = arr.getJSONObject(i).getString("H19");
-                    pricesArray[20] = arr.getJSONObject(i).getString("H20");
-                    pricesArray[21] = arr.getJSONObject(i).getString("H21");
-                    pricesArray[22] = arr.getJSONObject(i).getString("H22");
-                    pricesArray[23] = arr.getJSONObject(i).getString("H23");
+                    pricesArray[0]  = arr.getJSONObject(i).getDouble("H00");
+                    pricesArray[1] = arr.getJSONObject(i).getDouble("H01");
+                    pricesArray[2] = arr.getJSONObject(i).getDouble("H02");
+                    pricesArray[3] = arr.getJSONObject(i).getDouble("H03");
+                    pricesArray[4] = arr.getJSONObject(i).getDouble("H04");
+                    pricesArray[5] = arr.getJSONObject(i).getDouble("H05");
+                    pricesArray[6] = arr.getJSONObject(i).getDouble("H06");
+                    pricesArray[7] = arr.getJSONObject(i).getDouble("H07");
+                    pricesArray[8] = arr.getJSONObject(i).getDouble("H08");
+                    pricesArray[9] = arr.getJSONObject(i).getDouble("H09");
+                    pricesArray[10] = arr.getJSONObject(i).getDouble("H10");
+                    pricesArray[11] = arr.getJSONObject(i).getDouble("H11");
+                    pricesArray[12] = arr.getJSONObject(i).getDouble("H12");
+                    pricesArray[13] = arr.getJSONObject(i).getDouble("H13");
+                    pricesArray[14] = arr.getJSONObject(i).getDouble("H14");
+                    pricesArray[15] = arr.getJSONObject(i).getDouble("H15");
+                    pricesArray[16] = arr.getJSONObject(i).getDouble("H16");
+                    pricesArray[17] = arr.getJSONObject(i).getDouble("H17");
+                    pricesArray[18] = arr.getJSONObject(i).getDouble("H18");
+                    pricesArray[19] = arr.getJSONObject(i).getDouble("H19");
+                    pricesArray[20] = arr.getJSONObject(i).getDouble("H20");
+                    pricesArray[21] = arr.getJSONObject(i).getDouble("H21");
+                    pricesArray[22] = arr.getJSONObject(i).getDouble("H22");
+                    pricesArray[23] = arr.getJSONObject(i).getDouble("H23");
                     //Toast.makeText(context, "Parcing: "+arr.getJSONObject(i).getString("H00"), Toast.LENGTH_LONG).show();
 
                 }
@@ -136,9 +121,9 @@ public class Singleton {
     }
 
 
-    private void toastPrices(String[] pricesArray) {
+    private void toastPrices(Double[] pricesArray) {
         StringBuilder builder = new StringBuilder();
-        for (String k : pricesArray) {
+        for (Double k : pricesArray) {
             builder.append("").append(k).append(" ");
         }
         Toast.makeText(context, "builder: " + builder, Toast.LENGTH_LONG).show();
