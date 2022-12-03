@@ -38,11 +38,19 @@ public class MainActivity extends AppCompatActivity {
     HappyHourFragment happy_hourFragment = new HappyHourFragment();                     //
     SettingsFragment settingsFragment = new SettingsFragment();
 
+    private Singleton singleton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String[] prices = new String[24];
+        Singleton singleton = Singleton.getInstance(getApplicationContext());
+        prices = singleton.getPrices();
+
+
 
         createNotificationChannel();
         // sendAndRequestResponse();
