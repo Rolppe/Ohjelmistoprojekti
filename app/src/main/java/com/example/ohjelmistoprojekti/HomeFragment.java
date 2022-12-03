@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
             BarData barData = new BarData(barDataSet);
             barChart.setData(barData);
             barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-            barDataSet.setValueTextColor(Color.BLACK);
+            barDataSet.setValueTextColor(Color.RED);
             barChart.setDrawGridBackground(false);
             barChart.getDescription().setEnabled(false);
         } catch (NegativeArraySizeException negativeArraySizeException) {
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
             dummyLineData.add(lineDataSet);
 
             LineData data = new LineData(dummyLineData);
-            data.setValueTextColor(Color.BLACK);
+            data.setValueTextColor(Color.RED);
             data.setValueTextSize(16f);
             lineChart.setData(data);
             lineChart.setDrawGridBackground(false);

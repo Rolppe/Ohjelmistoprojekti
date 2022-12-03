@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
         Singleton singleton = Singleton.getInstance(getApplicationContext());
         prices = singleton.getPrices();
 
-
-
         createNotificationChannel();
         // sendAndRequestResponse();
         /*
@@ -86,10 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(settingsFragment);
                     break;
             }
-
             return true;
         });
-
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -99,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.flFragment,fragment);
         fragmentTransaction.commit();
     }
-
 
     public void createNotificationChannel(){
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){

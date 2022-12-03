@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -45,7 +46,12 @@ public class SettingsFragment extends Fragment {
                     priceAlertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                            if(isChecked){
+
+                            EditText inputPrice = (EditText) view.findViewById(R.id.etPrice);
+                            String priceString = inputPrice.getText().toString();
+                            int price = Integer.parseInt(priceString);
+                            if(priceString != null){
+
                                 Toast.makeText(view.getContext(), "Price Alerts are ON!", Toast.LENGTH_SHORT).show();
                                 //price change at 2pm, APP reads backend price
                                 Intent intent = new Intent(view.getContext(), ReminderBroadcast.class);  //If switch is on, do function.
