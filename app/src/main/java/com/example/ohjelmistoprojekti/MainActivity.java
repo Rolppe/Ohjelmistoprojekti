@@ -10,7 +10,20 @@ import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import android.widget.Toast;
+import android.util.Log;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import org.json.*;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,13 +36,38 @@ public class MainActivity extends AppCompatActivity {
 
     HomeFragment homeFragment = new HomeFragment();                                     //
     HappyHourFragment happy_hourFragment = new HappyHourFragment();                     //
-    SettingsFragment settingsFragment = new SettingsFragment();                         //
+    SettingsFragment settingsFragment = new SettingsFragment();
+
+    private Singleton singleton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String[] prices = new String[24];
+        Singleton singleton = Singleton.getInstance(getApplicationContext());
+        prices = singleton.getPrices();
+
         createNotificationChannel();
+        // sendAndRequestResponse();
+        /*
+        while (this.pricesArray[0] == null) {
+
+            continue;
+        }
+
+        StringBuilder builder = new StringBuilder();
+
+        for(String k : this.pricesArray) {
+
+            builder.append("").append(k).append(" ");
+        }
+        */
+
+        // Access the RequestQueue through your singleton class.
+        // MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
         replaceFragment(homeFragment);                                                  // APPia avatessa se avaa koti fragmentin
         bottomNavigationView = findViewById(R.id.bottomNavigationView);                 // Tunnistaa navigointipalkin
@@ -50,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
