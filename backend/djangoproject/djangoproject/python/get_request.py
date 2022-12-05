@@ -78,6 +78,8 @@ def addNewEntry(datapoints,date):
 def combineShite(date):
   if (date == "tomorrow"):
     datetime_search = datetime.datetime.now()+ datetime.timedelta(days = 1)
+  elif (date == "yesterday")
+      datetime_search = datetime.datetime.now()- datetime.timedelta(days = 1)
   else:
     datetime_search = datetime.datetime.now()
 
