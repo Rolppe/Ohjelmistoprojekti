@@ -103,7 +103,7 @@ def updateHandler():
   except:
     latest = False
   
-  current_time = datetime.datetime.now() +datetime.timedelta(hours=3) 
+  current_time = datetime.datetime.now() +datetime.timedelta(hours=2) 
 
   ###HUOM KESÄAIKA
 
