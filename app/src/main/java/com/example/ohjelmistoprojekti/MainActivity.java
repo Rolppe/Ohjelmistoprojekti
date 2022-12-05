@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     String CHANNEL_ID = "NotificationChannelOne";                                       //Notifikaatio kanavan Id
     String CHANNEL_NAME = "BasicNotification";                                          //Notifikaatio kanavan nimi
     String description = "This is a Demo Notification with no proper functionality";    //Notifikaatio kanavan kuvaus
+    Double[] pricesToday;
 
     BottomNavigationView bottomNavigationView;                                          //Navigointipalkin viite
 
@@ -46,26 +47,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] prices = new String[24];
-        Singleton singleton = Singleton.getInstance(getApplicationContext());
-        prices = singleton.getPrices();
-
         createNotificationChannel();
         // sendAndRequestResponse();
-        /*
-        while (this.pricesArray[0] == null) {
-
-            continue;
-        }
-
-        StringBuilder builder = new StringBuilder();
-
-        for(String k : this.pricesArray) {
-
-            builder.append("").append(k).append(" ");
-        }
-        */
-
         // Access the RequestQueue through your singleton class.
         // MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 

@@ -1,5 +1,6 @@
 package com.example.ohjelmistoprojekti;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -28,8 +30,10 @@ import java.util.Random;
 public class HomeFragment extends Fragment {
 
     ArrayList dummyBarData = new ArrayList();
+    Double[] pricesToday;
     List<ILineDataSet> dummyLineData = new ArrayList<>();
     Random random = new Random();
+    //Context context;
     int max = 10;
     int min = 1;
 
@@ -38,6 +42,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        getPricesToday();
         dummyBarData.removeAll(dummyLineData);
         dummyLineData.removeAll(dummyLineData);
         try {
@@ -112,4 +117,25 @@ public class HomeFragment extends Fragment {
         dummyBarData.add(new BarEntry(24f, 17));
     }
 
+    private void getPricesToday(){
+        Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
+        singleton.getPriceData(getActivity().getApplicationContext(), new Singleton.VolleyResponseListener() {
+            @Override
+            public void onError(String message) {
+            }
+            @Override
+            public void onResponse(Double[] pricesArray) {
+                pricesToday= pricesArray;
+                toastPrices(pricesToday,"HomeFragment");
+            }
+        });
+    }
+
+    public void toastPrices(Double[] pricesArray, String additionalText) {
+        StringBuilder builder = new StringBuilder();
+        for (Double k : pricesArray) {
+            builder.append("").append(k).append(" ");
+        }
+        Toast.makeText(getActivity().getApplicationContext(), additionalText + builder, Toast.LENGTH_LONG).show();
+    }
 }
