@@ -9,8 +9,9 @@ from django.db import models
 
 def editTimePeriods(param_time):
   time = param_time
-  period_start = time.strftime("%Y") + time.strftime("%m") + time.strftime("%d") + '0000'
-  period_end = time.strftime("%Y") + time.strftime("%m") + time.strftime("%d") + '2300'
+  timeYesterday = param_time - datetime.timedelta(days = 1)
+  period_start = timeYesterday.strftime("%Y") + timeYesterday.strftime("%m") + timeYesterday.strftime("%d") + '2300'
+  period_end = time.strftime("%Y") + time.strftime("%m") + time.strftime("%d") + '2200'
 
   return period_start, period_end
 
