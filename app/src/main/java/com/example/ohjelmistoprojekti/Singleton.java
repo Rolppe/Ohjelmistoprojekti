@@ -31,7 +31,7 @@ public class Singleton {
 
     public interface VolleyResponseListener {
         void onError(String message);
-        void onResponse(Double[] pricesToday, Double[] pricesTomorrow,String dateToday, String dateTomorrow);
+        void onResponse(double[] pricesToday, double[] pricesTomorrow,String dateToday, String dateTomorrow);
     }
 
     public static Singleton getInstance(Context context) {
@@ -53,8 +53,8 @@ public class Singleton {
                     cal.add(Calendar.DAY_OF_MONTH, 1);
                     String dateTomorrow = sdf.format(cal.getTime());
 
-                    Double[] pricesToday = new Double[24];
-                    Double[] pricesTomorrow = new Double[24];
+                    double[] pricesToday = new double[24];
+                    double[] pricesTomorrow = new double[24];
 
                     parseJsonAndUpdateUI(response, context, dateToday, pricesToday);
                     parseJsonAndUpdateUI(response, context, dateTomorrow, pricesTomorrow);
@@ -70,7 +70,7 @@ public class Singleton {
         mRequestQueue.add(stringRequest);
     }
 
-    private void parseJsonAndUpdateUI(String response, Context context, String time, Double[] pricesArray) {
+    private void parseJsonAndUpdateUI(String response, Context context, String time, double[] pricesArray) {
         try {
             JSONObject obj = new JSONObject(response);
             JSONArray arr = obj.getJSONArray("Prices"); // notice that `"posts": [...]`
@@ -109,9 +109,9 @@ public class Singleton {
         }
     }
 
-    private void toastPrices(Double[] pricesArray) {
+    private void toastPrices(double[] pricesArray) {
         StringBuilder builder = new StringBuilder();
-        for (Double k : pricesArray) {
+        for (double k : pricesArray) {
             builder.append("").append(k).append(" ");
         }
         Toast.makeText(context, "builder: " + builder, Toast.LENGTH_LONG).show();

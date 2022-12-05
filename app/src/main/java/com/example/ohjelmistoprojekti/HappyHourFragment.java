@@ -31,8 +31,8 @@ public class HappyHourFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private Button addProg_btn;
 
-    Double[] pricesToday;
-    Double[] pricesTomorrow;
+    double[] pricesToday;
+    double[] pricesTomorrow;
 
     private String title = "";
     private String from = "";
@@ -153,7 +153,7 @@ public class HappyHourFragment extends Fragment {
             public void onError(String message) {
             }
             @Override
-            public void onResponse(Double[] aPricesToday, Double[] aPricesTomorrow, String dateToday, String dateTomorrow) {
+            public void onResponse(double[] aPricesToday, double[] aPricesTomorrow, String dateToday, String dateTomorrow) {
                 pricesToday= aPricesToday;
                 pricesTomorrow= aPricesTomorrow;
 
@@ -164,10 +164,10 @@ public class HappyHourFragment extends Fragment {
         });
     }
 
-    public void toastPrices(Double[] pricesArray, String additionalText,String date) {
+    public void toastPrices(double[] pricesArray, String additionalText,String date) {
         StringBuilder builder = new StringBuilder();
         builder.append(" ").append(date).append(" ");
-        for (Double k : pricesArray) {
+        for (double k : pricesArray) {
             builder.append(" ").append(k).append(" ");
         }
         Toast.makeText(getActivity().getApplicationContext(), additionalText + builder, Toast.LENGTH_LONG).show();
