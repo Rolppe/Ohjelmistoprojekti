@@ -43,7 +43,7 @@ def addNewEntry(datapoints,date):
   dp = []
   for item in datapoints:
     temp = float(item['price'])
-    temp = round(temp / 1000  * 100 * 1.24, 2) # MWh -> kWh, € -> c, + alv
+    temp = round(temp / 1000  * 100 * 1.1, 2) # MWh -> kWh, € -> c, + alv
     dp.append(temp)
 
   price_instance = DayPrices.objects.create(

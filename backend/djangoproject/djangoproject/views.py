@@ -22,6 +22,7 @@ def PriceRequestHandler(request):
     
     # Update database
     updateHandler()
+    
     # Get all DayPrices items
     all_prices = DayPrices.objects.all()
 
