@@ -8,7 +8,7 @@ from django.db import models
 
 
 def editTimePeriods(param_time):
-  time = param_time + datetime.timedelta(hours = 1)
+  time = param_time
   period_start = time.strftime("%Y") + time.strftime("%m") + time.strftime("%d") + '0000'
   period_end = time.strftime("%Y") + time.strftime("%m") + time.strftime("%d") + '2300'
 
@@ -103,7 +103,7 @@ def updateHandler():
   except:
     latest = False
   
-  current_time = datetime.datetime.now() +datetime.timedelta(hours=2) 
+  current_time = datetime.datetime.now() +datetime.timedelta(hours=3) 
 
   ###HUOM KESÄAIKA
 
