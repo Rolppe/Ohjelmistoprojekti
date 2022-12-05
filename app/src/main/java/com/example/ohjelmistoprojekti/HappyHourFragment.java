@@ -31,6 +31,9 @@ public class HappyHourFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private Button addProg_btn;
 
+    Double[] pricesToday;
+    Double[] pricesTomorrow;
+
     private String title = "";
     private String from = "";
     private String to = "";
@@ -42,7 +45,7 @@ public class HappyHourFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_happy_hour, container, false);
-
+        getPrices();
         // initializing variables
         mRecyclerView = view.findViewById(R.id.hhRecyclerView);
         addProg_btn = (Button) view.findViewById(R.id.addProgramButton);
@@ -142,5 +145,33 @@ public class HappyHourFragment extends Fragment {
             double[] tempArray = {min_sum, returnIndex};
             return tempArray;
         }
+
+    private void getPrices(){
+        Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
+        singleton.getPriceData(getActivity().getApplicationContext(), new Singleton.VolleyResponseListener() {
+            @Override
+            public void onError(String message) {
+            }
+            @Override
+            public void onResponse(Double[] aPricesToday, Double[] aPricesTomorrow, String dateToday, String dateTomorrow) {
+                pricesToday= aPricesToday;
+                pricesTomorrow= aPricesTomorrow;
+
+                toastPrices(pricesToday,"HappyHourFragment pricesToday: ", dateToday);
+                toastPrices(pricesTomorrow,"HappyHourFragment pricesTomorrow: ",dateTomorrow);
+
+            }
+        });
+    }
+
+    public void toastPrices(Double[] pricesArray, String additionalText,String date) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(" ").append(date).append(" ");
+        for (Double k : pricesArray) {
+            builder.append(" ").append(k).append(" ");
+        }
+        Toast.makeText(getActivity().getApplicationContext(), additionalText + builder, Toast.LENGTH_LONG).show();
+    }
 }
+
 

@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
 
     ArrayList dummyBarData = new ArrayList();
     Double[] pricesToday;
+    Double[] pricesTomorrow;
     List<ILineDataSet> dummyLineData = new ArrayList<>();
     Random random = new Random();
     //Context context;
@@ -42,7 +43,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        getPricesToday();
+        getPrices();
         dummyBarData.removeAll(dummyLineData);
         dummyLineData.removeAll(dummyLineData);
         try {
@@ -117,24 +118,29 @@ public class HomeFragment extends Fragment {
         dummyBarData.add(new BarEntry(24f, 17));
     }
 
-    private void getPricesToday(){
+    private void getPrices(){
         Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
         singleton.getPriceData(getActivity().getApplicationContext(), new Singleton.VolleyResponseListener() {
             @Override
             public void onError(String message) {
             }
             @Override
-            public void onResponse(Double[] pricesArray) {
-                pricesToday= pricesArray;
-                toastPrices(pricesToday,"HomeFragment");
+            public void onResponse(Double[] aPricesToday, Double[] aPricesTomorrow, String dateToday, String dateTomorrow) {
+                pricesToday= aPricesToday;
+                pricesTomorrow= aPricesTomorrow;
+
+                toastPrices(pricesToday,"HomeFragment pricesToday: ", dateToday);
+                toastPrices(pricesTomorrow,"HomeFragment pricesTomorrow: ",dateTomorrow);
+
             }
         });
     }
 
-    public void toastPrices(Double[] pricesArray, String additionalText) {
+    public void toastPrices(Double[] pricesArray, String additionalText,String date) {
         StringBuilder builder = new StringBuilder();
+        builder.append(" ").append(date).append(" ");
         for (Double k : pricesArray) {
-            builder.append("").append(k).append(" ");
+            builder.append(" ").append(k).append(" ");
         }
         Toast.makeText(getActivity().getApplicationContext(), additionalText + builder, Toast.LENGTH_LONG).show();
     }
