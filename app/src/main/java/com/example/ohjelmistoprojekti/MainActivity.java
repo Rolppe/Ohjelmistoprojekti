@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     String CHANNEL_ID = "NotificationChannelOne";                                       //Notifikaatio kanavan Id
     String CHANNEL_NAME = "BasicNotification";                                          //Notifikaatio kanavan nimi
     String description = "This is a Demo Notification with no proper functionality";    //Notifikaatio kanavan kuvaus
-    Double[] pricesToday;
 
     BottomNavigationView bottomNavigationView;                                          //Navigointipalkin viite
 
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     HappyHourFragment happy_hourFragment = new HappyHourFragment();                     //
     SettingsFragment settingsFragment = new SettingsFragment();
 
-    private Singleton singleton;
 
 
     @Override

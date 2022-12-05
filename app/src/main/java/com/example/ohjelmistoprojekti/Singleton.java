@@ -13,18 +13,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class Singleton {
     String url = "https://ohjelmistoprojekti-production.up.railway.app/pricejson/";
-    Double[] pricesArray = new Double[24];
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private static Context context;
     private static Singleton instance;
-
-    //private static final String TAG = getActivity().getName();
 
     private Singleton(Context context) {
         this.context = context;
@@ -33,7 +31,7 @@ public class Singleton {
 
     public interface VolleyResponseListener {
         void onError(String message);
-        void onResponse(Double[] pricesArray);
+        void onResponse(Double[] pricesToday, Double[] pricesTomorrow,String dateToday, String dateTomorrow);
     }
 
     public static Singleton getInstance(Context context) {
@@ -49,10 +47,18 @@ public class Singleton {
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
-                    //Toast.makeText(context, "RESPONSE: "+response, Toast.LENGTH_LONG).show();
-                    String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());                    parseJsonAndUpdateUI(response, context, "2022-12-03");
-                    parseJsonAndUpdateUI(response, context, "2022-12-03");
-                    volleyResponseListener.onResponse(pricesArray);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Calendar cal = Calendar.getInstance();
+                    String dateToday = sdf.format(cal.getTime());
+                    cal.add(Calendar.DAY_OF_MONTH, 1);
+                    String dateTomorrow = sdf.format(cal.getTime());
+
+                    Double[] pricesToday = new Double[24];
+                    Double[] pricesTomorrow = new Double[24];
+
+                    parseJsonAndUpdateUI(response, context, dateToday, pricesToday);
+                    parseJsonAndUpdateUI(response, context, dateTomorrow, pricesTomorrow);
+                    volleyResponseListener.onResponse(pricesToday, pricesTomorrow,dateToday,dateTomorrow);
                 },
                 error -> {
                     // virhe verkosta hakemisessa
@@ -64,14 +70,12 @@ public class Singleton {
         mRequestQueue.add(stringRequest);
     }
 
-    private void parseJsonAndUpdateUI(String response, Context context, String time) {
+    private void parseJsonAndUpdateUI(String response, Context context, String time, Double[] pricesArray) {
         try {
             JSONObject obj = new JSONObject(response);
             JSONArray arr = obj.getJSONArray("Prices"); // notice that `"posts": [...]`
             for (int i = 0; i < arr.length(); i++) {
-
                 String date = arr.getJSONObject(i).getString("Date");
-
                 if (date.equals(time)) {
                     pricesArray[0]  = arr.getJSONObject(i).getDouble("H00");
                     pricesArray[1] = arr.getJSONObject(i).getDouble("H01");
@@ -97,29 +101,13 @@ public class Singleton {
                     pricesArray[21] = arr.getJSONObject(i).getDouble("H21");
                     pricesArray[22] = arr.getJSONObject(i).getDouble("H22");
                     pricesArray[23] = arr.getJSONObject(i).getDouble("H23");
-                    //Toast.makeText(context, "Parcing: "+arr.getJSONObject(i).getString("H00"), Toast.LENGTH_LONG).show();
-
                 }
-
             }
-
-
-            // Parsitaan JSONia eli kaivetaan haluttu data
-            /*String id = rootObject.getJSONArray("Prices").getJSONObject(8).getString("id");
-            Double H23 = rootObject.getJSONArray("Prices").getJSONObject(8).getDouble("H23");
-            String sH23 = String.valueOf(H23);*/
-
-            /*
-            Toast.makeText(context, id, Toast.LENGTH_SHORT).show();
-            Toast.makeText(context, sH23, Toast.LENGTH_SHORT).show();*/
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(context, "Virhe JSON parsinnassa", Toast.LENGTH_SHORT).show();
         }
-
-
     }
-
 
     private void toastPrices(Double[] pricesArray) {
         StringBuilder builder = new StringBuilder();
@@ -127,6 +115,5 @@ public class Singleton {
             builder.append("").append(k).append(" ");
         }
         Toast.makeText(context, "builder: " + builder, Toast.LENGTH_LONG).show();
-
     }
 }
