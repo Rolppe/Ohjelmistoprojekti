@@ -30,8 +30,8 @@ import java.util.Random;
 public class HomeFragment extends Fragment {
 
     ArrayList dummyBarData = new ArrayList();
-    Double[] pricesToday;
-    Double[] pricesTomorrow;
+    double[] pricesToday;
+    double[] pricesTomorrow;
     List<ILineDataSet> dummyLineData = new ArrayList<>();
     Random random = new Random();
     //Context context;
@@ -125,7 +125,7 @@ public class HomeFragment extends Fragment {
             public void onError(String message) {
             }
             @Override
-            public void onResponse(Double[] aPricesToday, Double[] aPricesTomorrow, String dateToday, String dateTomorrow) {
+            public void onResponse(double[] aPricesToday, double[] aPricesTomorrow, String dateToday, String dateTomorrow) {
                 pricesToday= aPricesToday;
                 pricesTomorrow= aPricesTomorrow;
 
@@ -136,10 +136,10 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void toastPrices(Double[] pricesArray, String additionalText,String date) {
+    public void toastPrices(double[] pricesArray, String additionalText,String date) {
         StringBuilder builder = new StringBuilder();
         builder.append(" ").append(date).append(" ");
-        for (Double k : pricesArray) {
+        for (double k : pricesArray) {
             builder.append(" ").append(k).append(" ");
         }
         Toast.makeText(getActivity().getApplicationContext(), additionalText + builder, Toast.LENGTH_LONG).show();
