@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class HappyHourFragment extends Fragment {
 
-    ArrayList<HappyHourItem> happyHourList;
+    ArrayList<HappyHourItem> happyHourList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -46,7 +46,6 @@ public class HappyHourFragment extends Fragment {
         // initializing variables
         mRecyclerView = view.findViewById(R.id.hhRecyclerView);
         addProg_btn = (Button) view.findViewById(R.id.addProgramButton);
-        happyHourList = new ArrayList<>();
 
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
