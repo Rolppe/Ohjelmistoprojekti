@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,12 +16,14 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
 
     Context context;
     ArrayList<HappyHourItem> happyHourList;
+    private HH_RecyclerViewAdapter adapter;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         // grabbing views from recycler_view_row layout file
         // acting as an onCreate method (bad analogy)
 
         TextView mTitle, mFrom, mTo;
+        ImageButton delBtn;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -29,6 +31,8 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
             mTitle = itemView.findViewById(R.id.editTitle);
             mFrom = itemView.findViewById(R.id.editFrom);
             mTo = itemView.findViewById(R.id.editTo);
+            delBtn = itemView.findViewById(R.id.deleteButton);
+
         }
 
     }
@@ -53,6 +57,15 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
         holder.mTitle.setText(happyHourList.get(position).getTitle());
         holder.mFrom.setText(happyHourList.get(position).getFrom());
         holder.mTo.setText(happyHourList.get(position).getTo());
+        holder.delBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HappyHourItem delItem = happyHourList.get(position);
+                // remove your item from data base
+                happyHourList.remove(position);  // remove the item from list
+                notifyItemRemoved(position); // notify the adapter about the removed item
+            }
+        });
     }
 
     @Override
@@ -60,5 +73,7 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
         // recycler view wants to know the number of items we want displayed
         return happyHourList.size();
     }
+
+
 
 }
