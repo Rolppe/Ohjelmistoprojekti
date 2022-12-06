@@ -24,59 +24,75 @@ public class Singleton {
     private static Context context;
     private static Singleton instance;
 
+    // Getting context for singleton
     private Singleton(Context context) {
         this.context = context;
         mRequestQueue = Volley.newRequestQueue(context);
     }
 
+    // Creating Volley Response Listener to get aSync data to fragments
     public interface VolleyResponseListener {
+        // If error, send message
         void onError(String message);
+        // If response, Send data
         void onResponse(double[] pricesToday, double[] pricesTomorrow,String dateToday, String dateTomorrow);
     }
 
+    // Get instance function
     public static Singleton getInstance(Context context) {
+        // Theres no instance yet, Create one
         if (instance == null) {
             instance = new Singleton(context);
         }
+        // return instance
         return instance;
     }
 
     public void getPriceData(Context context, VolleyResponseListener volleyResponseListener) {
-        // Haetaan hintatiedot palvelimelta (JSON)
+        // Defining json url
         String url = "https://ohjelmistoprojekti-production.up.railway.app/pricejson/";
-        // Request a string response from the provided URL.
+        // Requesting a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
+                    // If got response
+                    // Creating time parameters for parsing responce
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     Calendar cal = Calendar.getInstance();
                     String dateToday = sdf.format(cal.getTime());
                     cal.add(Calendar.DAY_OF_MONTH, 1);
                     String dateTomorrow = sdf.format(cal.getTime());
-
+                    // Creating arrays for data
                     double[] pricesToday = new double[24];
                     double[] pricesTomorrow = new double[24];
 
+                    // Parse response
                     parseJsonAndUpdateUI(response, context, dateToday, pricesToday);
                     parseJsonAndUpdateUI(response, context, dateTomorrow, pricesTomorrow);
                     volleyResponseListener.onResponse(pricesToday, pricesTomorrow,dateToday,dateTomorrow);
                 },
                 error -> {
-                    // virhe verkosta hakemisessa
-                    Toast.makeText(context, "Verkkovirhe", Toast.LENGTH_SHORT).show();
+                    // If theres a error getting response
+                    Toast.makeText(context, "Network error at fetching from api", Toast.LENGTH_SHORT).show();
                     volleyResponseListener.onError("volleyResponseListener error");
                 }
         );
-        // Add the request to the RequestQueue.
+        // Adding the request to the RequestQueue.
         mRequestQueue.add(stringRequest);
     }
 
+    // Function for parcing data
     private void parseJsonAndUpdateUI(String response, Context context, String time, double[] pricesArray) {
         try {
+            // Creating JSONObject from response
             JSONObject obj = new JSONObject(response);
+            // Creating JSONArray from JSONObject
             JSONArray arr = obj.getJSONArray("Prices"); // notice that `"posts": [...]`
+            // Looping through objects at Prices in json
             for (int i = 0; i < arr.length(); i++) {
+                // Getting Date field from object
                 String date = arr.getJSONObject(i).getString("Date");
                 if (date.equals(time)) {
+                    // If Date field equals to searched parameter put prices data to price array
                     pricesArray[0]  = arr.getJSONObject(i).getDouble("H00");
                     pricesArray[1] = arr.getJSONObject(i).getDouble("H01");
                     pricesArray[2] = arr.getJSONObject(i).getDouble("H02");
@@ -104,16 +120,21 @@ public class Singleton {
                 }
             }
         } catch (JSONException e) {
+            // If theres an error parsing JSON
             e.printStackTrace();
-            Toast.makeText(context, "Virhe JSON parsinnassa", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Error at parsing JSON", Toast.LENGTH_SHORT).show();
         }
     }
 
+    // Function for toasting prices from pricesArray
     private void toastPrices(double[] pricesArray) {
+        // Create StringBuilder
         StringBuilder builder = new StringBuilder();
+        // Append data from array to StringBuilder
         for (double k : pricesArray) {
             builder.append("").append(k).append(" ");
         }
+        // Toasting string builder
         Toast.makeText(context, "builder: " + builder, Toast.LENGTH_LONG).show();
     }
 }
