@@ -28,33 +28,33 @@ import org.json.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    String CHANNEL_ID = "NotificationChannelOne";                                       //Notifikaatio kanavan Id
-    String CHANNEL_NAME = "BasicNotification";                                          //Notifikaatio kanavan nimi
-    String description = "This is a Demo Notification with no proper functionality";    //Notifikaatio kanavan kuvaus
+    //Strings
+    String CHANNEL_ID = "NotificationChannelOne";
+    String CHANNEL_NAME = "BasicNotification";
+    String description = "This is a Demo Notification with no proper functionality";
 
-    BottomNavigationView bottomNavigationView;                                          //Navigointipalkin viite
+    //NavView
+    BottomNavigationView bottomNavigationView;
 
-    HomeFragment homeFragment = new HomeFragment();                                     //
-    HappyHourFragment happy_hourFragment = new HappyHourFragment();                     //
+    //Fragments
+    HomeFragment homeFragment = new HomeFragment();
+    HappyHourFragment happy_hourFragment = new HappyHourFragment();
     SettingsFragment settingsFragment = new SettingsFragment();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //Calling NotifChannel function
         createNotificationChannel();
-        // sendAndRequestResponse();
-        // Access the RequestQueue through your singleton class.
-        // MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
-        replaceFragment(homeFragment);                                                  // APPia avatessa se avaa koti fragmentin
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);                 // Tunnistaa navigointipalkin
-        bottomNavigationView.setOnItemSelectedListener(item -> {                        // navigatiopalkin kuuntelija
-
-            switch(item.getItemId()){                                                   //
+        //Replacing view with homefrag on startup
+        replaceFragment(homeFragment);
+        //Initializing the nav bar
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        //Listener
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch(item.getItemId()){
                 case R.id.home:
                     replaceFragment(homeFragment);
                     break;
@@ -68,20 +68,27 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
     }
-
+    //Fragment replace function
     private void replaceFragment(Fragment fragment) {
-
+        //New frag manager
         FragmentManager fragmentManager = getSupportFragmentManager();
+        //Begin transaction
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        //Replace current frag with new frag
         fragmentTransaction.replace(R.id.flFragment,fragment);
+        //Commit the change
         fragmentTransaction.commit();
     }
-
+    //NotifChannel function
     public void createNotificationChannel(){
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            //New notif channel
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+            //Add channel description
             channel.setDescription(description);
+            //New channel manager
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            //Create the channel
             notificationManager.createNotificationChannel(channel);
         }
     }
