@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from djangoproject import views
 
+# Creating url:s for admin page and json output
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("jsonulos/", views.LuokannimiLista),
+    path("admin/", admin.site.urls), 
+    path("jsonulos/", views.LuokannimiLista), 
     path("pricejson/", views.PriceRequestHandler)
 ]
