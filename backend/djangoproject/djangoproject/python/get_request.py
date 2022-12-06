@@ -8,7 +8,8 @@ from django.db import models
 
 
 def editTimePeriods(param_time):
-  time = param_time# + datetime.timedelta(days = 1)
+  time = param_time
+  #timeYesterday = param_time - datetime.timedelta(days = 1)
   period_start = time.strftime("%Y") + time.strftime("%m") + time.strftime("%d") + '0000'
   period_end = time.strftime("%Y") + time.strftime("%m") + time.strftime("%d") + '2300'
 
@@ -43,7 +44,8 @@ def addNewEntry(datapoints,date):
   dp = []
   for item in datapoints:
     temp = float(item['price'])
-    temp = round(temp / 1000  * 100 * 1.24, 2) # MWh -> kWh, € -> c, + alv
+
+    temp = round(temp / 1000  * 100 * 1.1, 2) # MWh -> kWh, € -> c, + alv
     dp.append(temp)
 
   price_instance = DayPrices.objects.create(
@@ -77,6 +79,8 @@ def addNewEntry(datapoints,date):
 def combineShite(date):
   if (date == "tomorrow"):
     datetime_search = datetime.datetime.now()+ datetime.timedelta(days = 1)
+  elif (date == "yesterday"):
+      datetime_search = datetime.datetime.now()- datetime.timedelta(days = 1)
   else:
     datetime_search = datetime.datetime.now()
 
@@ -125,13 +129,3 @@ def updateHandler():
       combineShite(date = "tomorrow")# Haetaan kantaan huomisen hinnat
     else: # Jos kello on alle 14:30
       combineShite(date = "today")# Haetaan kantaan tämän päivän huomisen hinnat
-
-
-#print('\nWaiting to call the timed function...\n')
-
-# while 1:
-#   time = datetime.datetime.now()
-
-#   if (time.strftime("%H") == '14' and time.strftime("%M") == '45'):
-#     combineShite()
-#     break

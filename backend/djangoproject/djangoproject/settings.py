@@ -27,20 +27,24 @@ SECRET_KEY = "django-insecure-6kh)9$)9l(#pa1%c-fhq6h(haykr1#gt51s=+*h4cc26)q5f(x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Allowing all hosts
 ALLOWED_HOSTS = ['*']
 
+# Allowing cors from ports 3000 and 8000
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
   'http://localhost:3000',
 )
 
+# Adding server to CSRF_TRUSTED_ORIGINS
 CSRF_TRUSTED_ORIGINS = ['https://ohjelmistoprojekti-production.up.railway.app']
 
 
 # Application definition
-
 INSTALLED_APPS = [
+
+    # Import app:s
     "djangoproject",
     "rest_framework",
     "corsheaders",
