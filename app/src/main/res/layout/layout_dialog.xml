@@ -29,10 +29,10 @@
         android:id="@+id/dialogTvFrom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/dialogTvTimeRange"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="70dp"
         android:text="@string/edtTvFrom"
         android:textSize="24sp" />
 
@@ -40,32 +40,30 @@
         android:id="@+id/dialogTvTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/dialogTvTimeRange"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="70dp"
         android:text="@string/edtTvTo"
         android:textSize="24sp" />
 
     <TimePicker
         android:id="@+id/enterFrom"
-        android:layout_width="160dp"
+        android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_alignTop="@+id/dialogTvFrom"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
         android:inputType="time"
         android:timePickerMode="spinner" />
 
     <TimePicker
         android:id="@+id/enterTo"
-        android:layout_width="160dp"
+        android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_alignTop="@+id/dialogTvTo"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="10dp"
         android:inputType="time"
         android:timePickerMode="spinner" />
 
@@ -84,15 +82,15 @@
         android:id="@+id/dialogTvDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/enterFrom"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/dialogTvTimeRange"
+
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="200dp"
         android:text="@string/edtTvDuration"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/dialogTvTimeRange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

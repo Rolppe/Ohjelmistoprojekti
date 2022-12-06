@@ -1,11 +1,11 @@
 package com.example.ohjelmistoprojekti;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,103 +19,126 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.EntryXComparator;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.Collections;
 
 public class HomeFragment extends Fragment {
 
-    ArrayList dummyBarData = new ArrayList();
+    ArrayList BarData = new ArrayList();
+    ArrayList LineData = new ArrayList();
     double[] pricesToday;
     double[] pricesTomorrow;
-    List<ILineDataSet> dummyLineData = new ArrayList<>();
-    Random random = new Random();
-    //Context context;
-    int max = 10;
-    int min = 1;
+    int size = 24;
+    boolean state = false;
+    Handler handler = new Handler();
+    BarChart barChart;
+    LineChart lineChart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        getPrices();
-        dummyBarData.removeAll(dummyLineData);
-        dummyLineData.removeAll(dummyLineData);
+
+        barChart = (BarChart) view.findViewById(R.id.Chart1);
+        barChart.setFitBars(true);
+        barChart.setDrawGridBackground(false);
+        barChart.getDescription().setEnabled(false);
+        lineChart = (LineChart) view.findViewById(R.id.Chart2);
+        if(state == false) {
+            getPrices();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    try {
+                        BarDataSet barDataSet = new BarDataSet(BarData, "Price Dummy");
+                        BarData barData = new BarData(barDataSet);
+                        barChart.setData(barData);
+                        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                        barDataSet.setValueTextColor(Color.RED);
+                        barChart.setDrawGridBackground(false);
+                        barChart.getDescription().setEnabled(false);
+                        barChart.notifyDataSetChanged();
+                        barChart.invalidate();
+                    } catch (NegativeArraySizeException negativeArraySizeException) {
+                        negativeArraySizeException.printStackTrace();
+                        Toast.makeText(getContext(),"Negative Array Size Exception.", Toast.LENGTH_SHORT);
+                    }
+                    try {
+                        LineDataSet lineDataSet = new LineDataSet(LineData, "Dummyline");
+                        LineData lineData = new LineData((lineDataSet));
+                        lineChart.setData(lineData);
+                        lineData.setValueTextSize(10f);
+                        lineDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+                        lineData.setValueTextColor(Color.RED);
+                        lineDataSet.setLineWidth(5f);
+                        lineDataSet.setValueTextSize(16f);
+                        lineChart.setDrawGridBackground(false);
+                        lineChart.getDescription().setEnabled(false);
+                        lineChart.notifyDataSetChanged();
+                        lineChart.invalidate();
+                    } catch (NegativeArraySizeException negativeArraySizeException) {
+                        negativeArraySizeException.printStackTrace();
+                        Toast.makeText(getContext(),"Negative Array Size Exception.", Toast.LENGTH_SHORT);
+                    }
+                }
+            }, 1000); }
         try {
-            getDataBar();
-            BarChart barChart = (BarChart) view.findViewById(R.id.Chart1);
-            BarDataSet barDataSet = new BarDataSet(dummyBarData, "Price Dummy");
+            BarDataSet barDataSet = new BarDataSet(BarData, "Price Dummy");
             BarData barData = new BarData(barDataSet);
             barChart.setData(barData);
             barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
             barDataSet.setValueTextColor(Color.RED);
             barChart.setDrawGridBackground(false);
             barChart.getDescription().setEnabled(false);
+            barChart.notifyDataSetChanged();
+            barChart.invalidate();
         } catch (NegativeArraySizeException negativeArraySizeException) {
             negativeArraySizeException.printStackTrace();
+            Toast.makeText(getContext(),"Negative Array Size Exception.", Toast.LENGTH_SHORT);
         }
-
-            ArrayList<Entry> values = new ArrayList<>();
-            for (int i=0; i<10; i++){
-                values.add(new Entry(i, random.nextInt(max - min + 1)+ min));
-            }
-
         try {
-            LineChart lineChart = (LineChart) view.findViewById(R.id.Chart2);
-            LineDataSet lineDataSet = new LineDataSet(values, "Dummyline");
+            LineDataSet lineDataSet = new LineDataSet(LineData, "Dummyline");
             LineData lineData = new LineData((lineDataSet));
+            lineChart.setData(lineData);
+            lineData.setValueTextSize(10f);
             lineDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+            lineData.setValueTextColor(Color.RED);
             lineDataSet.setLineWidth(5f);
             lineDataSet.setValueTextSize(16f);
-
-            dummyLineData.add(lineDataSet);
-
-            LineData data = new LineData(dummyLineData);
-            data.setValueTextColor(Color.RED);
-            data.setValueTextSize(16f);
-            lineChart.setData(data);
             lineChart.setDrawGridBackground(false);
             lineChart.getDescription().setEnabled(false);
             lineChart.notifyDataSetChanged();
             lineChart.invalidate();
         } catch (NegativeArraySizeException negativeArraySizeException) {
             negativeArraySizeException.printStackTrace();
+            Toast.makeText(getContext(),"Negative Array Size Exception.", Toast.LENGTH_SHORT);
         }
-        System.out.println("Negative Array Size Exception.");
-
         return view;
     }
 
-    private void getDataBar() {
-        dummyBarData.add(new BarEntry(1f, 9));
-        dummyBarData.add(new BarEntry(2f, 10));
-        dummyBarData.add(new BarEntry(3f, 8));
-        dummyBarData.add(new BarEntry(4f, 15));
-        dummyBarData.add(new BarEntry(5f, 17));
-        dummyBarData.add(new BarEntry(6f, 11));
-        dummyBarData.add(new BarEntry(7f, 10));
-        dummyBarData.add(new BarEntry(8f, 13));
-        dummyBarData.add(new BarEntry(9f, 14));
-        dummyBarData.add(new BarEntry(10f, 23));
-        dummyBarData.add(new BarEntry(11f, 11));
-        dummyBarData.add(new BarEntry(12f, 18));
-        dummyBarData.add(new BarEntry(13f, 8));
-        dummyBarData.add(new BarEntry(14f, 9));
-        dummyBarData.add(new BarEntry(15f, 14));
-        dummyBarData.add(new BarEntry(16f, 11));
-        dummyBarData.add(new BarEntry(17f, 16));
-        dummyBarData.add(new BarEntry(18f, 21));
-        dummyBarData.add(new BarEntry(19f, 17));
-        dummyBarData.add(new BarEntry(20f, 11));
-        dummyBarData.add(new BarEntry(21f, 8));
-        dummyBarData.add(new BarEntry(22f, 12));
-        dummyBarData.add(new BarEntry(23f, 17));
-        dummyBarData.add(new BarEntry(24f, 17));
+    private ArrayList getDataBar(int count, double[] arr) {
+        float[] temp = new float[arr.length];
+        for (int j = 0 ; j < arr.length; j++)
+            temp[j] = (float) arr[j];
+
+        for( int i = 0; i < count; i++)
+            BarData.add(new BarEntry(i, temp[i]));
+        return BarData;
+    }
+
+    private ArrayList getDataLine(int count, double[] arr) {
+
+        float[] temp = new float[arr.length];
+        for (int j = 0 ; j < arr.length; j++)
+            temp[j] = (float) arr[j];
+
+        for (int i=0; i<count; i++)
+            LineData.add(new Entry(i, temp[i]));
+        Collections.sort(LineData, new EntryXComparator());
+        return LineData;
     }
 
     private void getPrices(){
@@ -129,9 +152,12 @@ public class HomeFragment extends Fragment {
                 pricesToday= aPricesToday;
                 pricesTomorrow= aPricesTomorrow;
 
-                toastPrices(pricesToday,"HomeFragment pricesToday: ", dateToday);
-                toastPrices(pricesTomorrow,"HomeFragment pricesTomorrow: ",dateTomorrow);
+                //toastPrices(pricesToday,"HomeFragment pricesToday: ", dateToday);
+                //toastPrices(pricesTomorrow,"HomeFragment pricesTomorrow: ",dateTomorrow);
 
+                getDataBar(size, pricesToday);
+                getDataLine(size, pricesTomorrow);
+                state = true;
             }
         });
     }
