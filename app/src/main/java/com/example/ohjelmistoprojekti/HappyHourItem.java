@@ -1,6 +1,7 @@
 package com.example.ohjelmistoprojekti;
 
 public class HappyHourItem {
+    //basic constructor class
     private String mTitle, mFrom, mTo;
 
     public HappyHourItem(String title, String from, String to) {

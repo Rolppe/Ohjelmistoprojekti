@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +22,11 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import org.w3c.dom.Text;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -75,11 +83,12 @@ public class HappyHourFragment extends Fragment {
 
     public void createDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
-                .setTitle("Add New Program");
+                .setTitle("");
         //new view based on dialog layout
         View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_dialog, (ViewGroup) getView(), false);
         //Initializations
-        final EditText inputTitle = (EditText) view.findViewById(R.id.enterTitle);
+        TextInputLayout til = (TextInputLayout) view.findViewById(R.id.text_input_layout);
+        final TextInputEditText inputTitle = (TextInputEditText) view.findViewById(R.id.enterTitle);
         final TimePicker inputFrom = (TimePicker) view.findViewById(R.id.enterFrom);
         inputFrom.setIs24HourView(true);
         final TimePicker inputTo = (TimePicker) view.findViewById(R.id.enterTo);
@@ -94,21 +103,41 @@ public class HappyHourFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //get data from dialog
-
-                        if(inputTitle.length() == 0) {
-                            inputTitle.setError("Please input Title!");
-                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT);
-                        }
+                        //getting title from user input
                         title = inputTitle.getText().toString();
+                        //function was still in development and doesn't work at turn in time for project
+                        //intended error message doesn't show if title left empty, and allows for data to be sent to card without title
+                        inputTitle.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                if(inputTitle.getText().toString().length() <= 0) {
+                                    inputTitle.setError("You need to enter a Title");
+                                }
+                                else {
+                                    inputTitle.setError(null);
+                                }
+                            }
+                        });
+                        //getting  time from user input
                         int fHour = inputFrom.getHour();
                         int fMinute = inputFrom.getMinute();
                         from = (fHour + ":" + fMinute);
+                        //getting  time from user input
                         int iHour = inputTo.getHour();
                         int iMinute = inputTo.getMinute();
                         to = (iHour + ":" + iMinute);
-
+                        //getting program length
                         pLength = inputLength.getValue();
 
+                        //transforming data into strings
                         from = (int) temp[1] + ":" + "00";
                         to = (int)temp[1] + pLength + ":" + "00";
 
@@ -125,11 +154,11 @@ public class HappyHourFragment extends Fragment {
                     }
                 })
                 .setCancelable(true);
-
         final AlertDialog dialog = builder.create();
+        //showing dialog
         dialog.show();
-    }
 
+    }
 
     // finding minimum sum of a subarray of size = length of program
         double[] minSum(double arr[], int arrLength, int pLength) {
@@ -151,6 +180,8 @@ public class HappyHourFragment extends Fragment {
             return tempArray;
         }
 
+
+    //getting prices via singleton function and setting the prices into local arrays
     private void getPrices(){
         Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
         singleton.getPriceData(getActivity().getApplicationContext(), new Singleton.VolleyResponseListener() {
@@ -168,7 +199,8 @@ public class HappyHourFragment extends Fragment {
             }
         });
     }
-
+    //toast function for async data used for testing
+    /*
     public void toastPrices(double[] pricesArray, String additionalText,String date) {
         StringBuilder builder = new StringBuilder();
         builder.append(" ").append(date).append(" ");
@@ -176,7 +208,7 @@ public class HappyHourFragment extends Fragment {
             builder.append(" ").append(k).append(" ");
         }
         Toast.makeText(getActivity().getApplicationContext(), additionalText + builder, Toast.LENGTH_LONG).show();
-    }
+    }*/
 }
 
 

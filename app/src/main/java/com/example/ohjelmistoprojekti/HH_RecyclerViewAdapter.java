@@ -27,7 +27,7 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            //inits
             mTitle = itemView.findViewById(R.id.editTitle);
             mFrom = itemView.findViewById(R.id.editFrom);
             mTo = itemView.findViewById(R.id.editTo);
@@ -38,6 +38,7 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
     }
 
     public HH_RecyclerViewAdapter(Context context, ArrayList<HappyHourItem> happyHourList){
+        //setters
         this.context = context;
         this.happyHourList = happyHourList;
     }
@@ -61,7 +62,7 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
             @Override
             public void onClick(View v) {
                 HappyHourItem delItem = happyHourList.get(position);
-                // remove your item from data base
+                // removeing item from data base
                 happyHourList.remove(position);  // remove the item from list
                 notifyItemRemoved(position); // notify the adapter about the removed item
             }
@@ -70,7 +71,7 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
 
     @Override
     public int getItemCount() {
-        // recycler view wants to know the number of items we want displayed
+        // recycler view wants to know the number of items to be displayed
         return happyHourList.size();
     }
 
