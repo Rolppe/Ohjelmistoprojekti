@@ -142,18 +142,24 @@ public class HomeFragment extends Fragment {
             BarTomorrow.add(new BarEntry(i, temp[i]));
         return BarTomorrow;
     }
-    //singleton function to get prices
+    // Function to get prices from Singleton
     private void getPrices(){
+        // Creating instance for singleton
         Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
+        // Getting data from singleton using Volley response listener
         singleton.getPriceData(getActivity().getApplicationContext(), new Singleton.VolleyResponseListener() {
             @Override
             public void onError(String message) {
+                // If bringing data creates error Toast the error
+                Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }
             @Override
             public void onResponse(double[] aPricesToday, double[] aPricesTomorrow, String dateToday, String dateTomorrow) {
+                // If get data. Saving pricesToday and Prices tomorrow
                 pricesToday= aPricesToday;
                 pricesTomorrow= aPricesTomorrow;
 
+                // Toasting fetched data
                 //toastPrices(pricesToday,"HomeFragment pricesToday: ", dateToday);
                 //toastPrices(pricesTomorrow,"HomeFragment pricesTomorrow: ",dateTomorrow);
 
@@ -163,14 +169,18 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    //toast function for async data used for testing
-    /*
+    // Function for toasting price arrays
     public void toastPrices(double[] pricesArray, String additionalText,String date) {
+        // Create stringBuilder
         StringBuilder builder = new StringBuilder();
+        // Append date to StringBuilder
         builder.append(" ").append(date).append(" ");
+        // Append data from array to String builder
         for (double k : pricesArray) {
             builder.append(" ").append(k).append(" ");
         }
+
+        // Toasting StringBuilder + additional text
         Toast.makeText(getActivity().getApplicationContext(), additionalText + builder, Toast.LENGTH_LONG).show();
-    }*/
+    }
 }

@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 
-
+# Creating test model
 class Luokannimi(models.Model):
     muuttuja1 = models.CharField(max_length=200)
     muuttuja2 = models.CharField(max_length=200)
@@ -9,8 +9,8 @@ class Luokannimi(models.Model):
     def __str__(self):
         return self.muuttuja1 + ' ' + self.muuttuja2 # Lisää listanäkymään muuttujien nimet
 
-class DayPrices(models.Model):
-  
+# Creating price model
+class DayPrices(models.Model):  
     Date = models.DateField(("Date"), default=datetime.date.today)
     H00 = models.FloatField()
     H01 = models.FloatField()
