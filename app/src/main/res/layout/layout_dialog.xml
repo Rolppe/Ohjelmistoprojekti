@@ -2,28 +2,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
     android:padding="16dp">
-
-    <EditText
-        android:id="@+id/enterTitle"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="90dp"
-        android:layout_alignParentTop="true"
-        android:inputType="text"
-        android:hint="@string/edtTitle"
-        android:textSize="24sp"/>
-
-    <TextView
-        android:id="@+id/dialogTvTitle"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="13dp"
-        android:text="@string/edtTvTitle"
-        android:textSize="24sp"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="@string/edtTitle"
+        app:endIconMode="clear_text"
+        app:helperText="@string/edtTitleRequired"
+        app:helperTextTextColor="@color/design_default_color_error"
+        app:counterEnabled="true"
+        app:counterMaxLength="16"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterTitle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:maxLength="16"
+            android:inputType="text"
+            android:textSize="24sp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/dialogTvFrom"
@@ -31,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/dialogTvTimeRange"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:layout_marginStart="70dp"
         android:text="@string/edtTvFrom"
         android:textSize="24sp" />
@@ -42,14 +50,14 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/dialogTvTimeRange"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="70dp"
         android:text="@string/edtTvTo"
         android:textSize="24sp" />
 
     <TimePicker
         android:id="@+id/enterFrom"
-        android:layout_width="150dp"
+        android:layout_width="160dp"
         android:layout_height="100dp"
         android:layout_alignTop="@+id/dialogTvFrom"
         android:layout_alignParentStart="true"
@@ -59,7 +67,7 @@
 
     <TimePicker
         android:id="@+id/enterTo"
-        android:layout_width="150dp"
+        android:layout_width="160dp"
         android:layout_height="100dp"
         android:layout_alignTop="@+id/dialogTvTo"
         android:layout_alignParentEnd="true"
@@ -69,12 +77,11 @@
 
     <NumberPicker
         android:id="@+id/enterPrgrmLgth"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="80dp"
         android:layout_alignTop="@+id/dialogTvDuration"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:hint="@string/edtPrgrmLgth"
         android:inputType="number"
         android:timePickerMode="spinner" />
 
@@ -85,7 +92,7 @@
         android:layout_alignTop="@+id/dialogTvTimeRange"
 
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="170dp"
         android:text="@string/edtTvDuration"
         android:textSize="24sp" />
 
@@ -95,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="80dp"
         android:text="Time Range"
         android:textSize="24sp"/>
 
