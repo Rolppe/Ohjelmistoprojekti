@@ -12,41 +12,84 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Singleton{
-    String url = "https://ohjelmistoprojekti-production.up.railway.app/pricejson/";
-    String[] pricesArray = new String[24];
-    private RequestQueue mRequestQueue;
+// Java program implementing Singleton class with using  getInstance() method
+
+/*
+class Singleton {
+    // Static variable reference of single_instance
+    // of type Singleton
+    private static Singleton single_instance = null;
+
+    // Declaring a variable of type String
+    public String s;
+
+    // Constructor
+    // Here we will be creating private constructor
+    // restricted to this class itself
+    private Singleton()
+    {
+        s = "Hello I am a string part of Singleton class";
+    }
+
+    // Static method
+    // Static method to create instance of Singleton class
+    public static Singleton getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new Singleton();
+
+        return single_instance;
+    }
+}
+ */
+
+public class Singleton {
+
+//    private Singleton instance;
+
+    // Static variable reference of single_instance of type Singleton
+    // Static methods/attributes can be accessed without creating an object of a class
+    private static Singleton single_instance = null;
+
+    // Declaring variables
+    private Context context;
     private StringRequest mStringRequest;
-    private static Context context;
-    private static Singleton instance;
+    private RequestQueue mRequestQueue;
+    // 'final' makes things non-changeable (impossible to inherit or override)
+    private final String url = "https://ohjelmistoprojekti-production.up.railway.app/pricejson/";
 
-    //private static final String TAG = getActivity().getName();
-
-    private Singleton(Context context){
-/*        for(int i = 0; i <= 23; i++){
-            String s=String.valueOf(i*2);
-            mPricesToday[i] = s;
-        }*/
+    // Constructor
+    // Here we will be creating private constructor restricted to this class itself
+    private Singleton(){
 
         mRequestQueue = Volley.newRequestQueue(context);
         getPriceData(context);
     }
 
-    public String[] getPrices(){
-        StringBuilder builder = new StringBuilder();
-        return pricesArray;
-    }
-    private static Singleton mSingleton;
+    // Static method
+    // Static method to create instance of Singleton class
+    public static Singleton getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new Singleton();
 
-
-    public static Singleton getInstance(Context context) {
-        if( instance == null ) {
-            instance = new Singleton(context);
-        }
-        return instance;
+        return single_instance;
     }
 
+//    public String[] getPrices(){
+//        StringBuilder builder = new StringBuilder();
+//        return pricesArray;
+//    }
 
+//    private static Singleton mSingleton;
+
+
+//    public static Singleton getInstance(Context context) {
+//        if( instance == null ) {
+//            instance = new Singleton(context);
+//        }
+//        return instance;
+//    }
 
 
     public void getPriceData(Context context) {

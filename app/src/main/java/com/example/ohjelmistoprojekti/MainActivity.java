@@ -45,26 +45,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        String[] prices = new String[24];
-        Singleton singleton = Singleton.getInstance(getApplicationContext());
-        prices = singleton.getPrices();
-
         createNotificationChannel();
-        // sendAndRequestResponse();
-        /*
-        while (this.pricesArray[0] == null) {
 
-            continue;
-        }
+//        String[] prices = new String[24];
+//        Singleton singleton = Singleton.getInstance(getApplicationContext());
+//        prices = singleton.getPrices();
 
-        StringBuilder builder = new StringBuilder();
-
-        for(String k : this.pricesArray) {
-
-            builder.append("").append(k).append(" ");
-        }
-        */
+//        sendAndRequestResponse();
+//
+//        while (this.pricesArray[0] == null) {
+//
+//            continue;
+//        }
+//
+//        StringBuilder builder = new StringBuilder();
+//
+//        for(String k : this.pricesArray) {
+//
+//            builder.append("").append(k).append(" ");
+//        }
 
         // Access the RequestQueue through your singleton class.
         // MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
