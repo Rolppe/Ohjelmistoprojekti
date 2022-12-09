@@ -27,7 +27,6 @@ public class HomeFragment extends Fragment {
     double[] pricesTomorrow;
     int size = 24;
     boolean state = false;
-    Handler handler = new Handler();
     BarChart barChartToday;
     BarChart barChartTomorrow;
 
@@ -46,78 +45,8 @@ public class HomeFragment extends Fragment {
         barChartTomorrow.setFitBars(true);
         barChartTomorrow.setDrawGridBackground(false);
         barChartTomorrow.getDescription().setEnabled(false);
-        //if async data has not been gotten yet, get data
-        if(state == false) {
-            getPrices();
-            //small delay to allow for the async function to run its course
-            handler.postDelayed(new Runnable() {
-                public void run() {
-                    //creating a graph using async data
-                    try {
-                        BarDataSet barDataSet1 = new BarDataSet(BarToday, "Today");
-                        BarData barData = new BarData(barDataSet1);
-                        barDataSet1.setColors(ColorTemplate.MATERIAL_COLORS);
-                        barDataSet1.setValueTextColor(Color.parseColor("#ceccd2"));
-                        barDataSet1.setValueTextSize(8f);
-                        barChartToday.setData(barData);
-                        barChartToday.setDrawGridBackground(false);
-                        barChartToday.getDescription().setEnabled(false);
-                        barChartToday.notifyDataSetChanged();
-                        barChartToday.invalidate();
-                    } catch (NegativeArraySizeException negativeArraySizeException) {
-                        negativeArraySizeException.printStackTrace();
-                        Toast.makeText(getContext(),"Negative Array Size Exception.", Toast.LENGTH_SHORT);
-                    }
-                    //creating a graph using async data
-                    try {
-                        BarDataSet barDataSet2 = new BarDataSet(BarTomorrow, "Tomorrow");
-                        BarData barData = new BarData(barDataSet2);
-                        barDataSet2.setColors(ColorTemplate.MATERIAL_COLORS);
-                        barDataSet2.setValueTextColor(Color.parseColor("#ceccd2"));
-                        barDataSet2.setValueTextSize(8f);
-                        barChartTomorrow.setData(barData);
-                        barChartTomorrow.setDrawGridBackground(false);
-                        barChartTomorrow.getDescription().setEnabled(false);
-                        barChartTomorrow.notifyDataSetChanged();
-                        barChartTomorrow.invalidate();
-                    } catch (NegativeArraySizeException negativeArraySizeException) {
-                        negativeArraySizeException.printStackTrace();
-                        Toast.makeText(getContext(),"Negative Array Size Exception.", Toast.LENGTH_SHORT);
-                    }
-                }
-            }, 1000); }
-        //creating a graph using local data
-        try {
-            BarDataSet barDataSet1 = new BarDataSet(BarToday, "Today");
-            BarData barData = new BarData(barDataSet1);
-            barDataSet1.setColors(ColorTemplate.MATERIAL_COLORS);
-            barDataSet1.setValueTextColor(Color.parseColor("#ceccd2"));
-            barDataSet1.setValueTextSize(8f);
-            barChartToday.setData(barData);
-            barChartToday.setDrawGridBackground(false);
-            barChartToday.getDescription().setEnabled(false);
-            barChartToday.notifyDataSetChanged();
-            barChartToday.invalidate();
-        } catch (NegativeArraySizeException negativeArraySizeException) {
-            negativeArraySizeException.printStackTrace();
-            Toast.makeText(getContext(),"Negative Array Size Exception.", Toast.LENGTH_SHORT);
-        }
-        //creating a graph using local data
-        try {
-            BarDataSet barDataSet2 = new BarDataSet(BarTomorrow, "Tomorrow");
-            BarData barData = new BarData(barDataSet2);
-            barDataSet2.setColors(ColorTemplate.MATERIAL_COLORS);
-            barDataSet2.setValueTextColor(Color.parseColor("#ceccd2"));
-            barDataSet2.setValueTextSize(8f);
-            barChartTomorrow.setData(barData);
-            barChartTomorrow.setDrawGridBackground(false);
-            barChartTomorrow.getDescription().setEnabled(false);
-            barChartTomorrow.notifyDataSetChanged();
-            barChartTomorrow.invalidate();
-        } catch (NegativeArraySizeException negativeArraySizeException) {
-            negativeArraySizeException.printStackTrace();
-            Toast.makeText(getContext(),"Negative Array Size Exception.", Toast.LENGTH_SHORT);
-        }
+        //if async data has not been gotten yet, get data and draw graphs using that data
+        getPrices();
         return view;
     }
     //setting data for today's graph
@@ -165,6 +94,39 @@ public class HomeFragment extends Fragment {
 
                 getBarToday(size, pricesToday);
                 getBarTomorrow(size, pricesTomorrow);
+
+                //creating graphs using async data
+                try {
+                    BarDataSet barDataSet1 = new BarDataSet(BarToday, "Today");
+                    BarData barData = new BarData(barDataSet1);
+                    barDataSet1.setColors(ColorTemplate.MATERIAL_COLORS);
+                    barDataSet1.setValueTextColor(Color.parseColor("#ceccd2"));
+                    barDataSet1.setValueTextSize(8f);
+                    barChartToday.setData(barData);
+                    barChartToday.setDrawGridBackground(false);
+                    barChartToday.getDescription().setEnabled(false);
+                    barChartToday.notifyDataSetChanged();
+                    barChartToday.invalidate();
+                } catch (NegativeArraySizeException negativeArraySizeException) {
+                    negativeArraySizeException.printStackTrace();
+                    Toast.makeText(getContext(),"Negative Array Size Exception.", Toast.LENGTH_SHORT);
+                }
+                //creating a graph using local data
+                try {
+                    BarDataSet barDataSet2 = new BarDataSet(BarTomorrow, "Tomorrow");
+                    BarData barData = new BarData(barDataSet2);
+                    barDataSet2.setColors(ColorTemplate.MATERIAL_COLORS);
+                    barDataSet2.setValueTextColor(Color.parseColor("#ceccd2"));
+                    barDataSet2.setValueTextSize(8f);
+                    barChartTomorrow.setData(barData);
+                    barChartTomorrow.setDrawGridBackground(false);
+                    barChartTomorrow.getDescription().setEnabled(false);
+                    barChartTomorrow.notifyDataSetChanged();
+                    barChartTomorrow.invalidate();
+                } catch (NegativeArraySizeException negativeArraySizeException) {
+                    negativeArraySizeException.printStackTrace();
+                    Toast.makeText(getContext(),"Negative Array Size Exception.", Toast.LENGTH_SHORT);
+                }
                 state = true;
             }
         });
