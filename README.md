@@ -18,5 +18,9 @@ Project information
       - Run Server: {python backend/djangoproject/manage.py runserver}
 
   Links to deployment servers
-    - JSON request: https://ohjelmistoprojekti-production.up.railway.app/pricejson/
-    - Administration https://ohjelmistoprojekti-production.up.railway.app/admin/
+  
+    - JSON request: 
+    https://ohjelmistoprojekti-production.up.railway.app/pricejson/
+    
+    - Administration 
+    https://ohjelmistoprojekti-production.up.railway.app/admin/
