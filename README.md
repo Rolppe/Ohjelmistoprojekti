@@ -10,8 +10,9 @@ Project information
     
   Team members: Mikko Paaso, Daniil Kovalev, Waltteri Lehtinen
   
-  Development instructions
-    - Tools and Software needed: Android Studio, VS Code
+  ## Development instructions
+    ### Tools and Software needed
+    Android Studio, VS Code
 
     - Backend commands:
       - Activate virtual environment: {. backend/.venv/bin/activate}
