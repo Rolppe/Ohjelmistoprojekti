@@ -31,6 +31,8 @@ Project information
     $ python backend/djangoproject/manage.py runserver
     
   ### Check json output
+  ![Screen Shot 2022-12-10 at 15 37 57](https://user-images.githubusercontent.com/78311409/206858122-40094a7a-a103-41bc-b00c-1e0a9857e42a.jpeg)
+
     $ {development server at}pricejson
 
   ## Links to deployment servers on railway.app
