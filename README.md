@@ -17,6 +17,18 @@ Project information
   ### Clone project
     $ git clone git@github.com:Rolppe/Ohjelmistoprojekti.git
 
+  ## Install Android App
+  Instructions here
+
+  ## Open project in Android Studio
+  1. Open Android Studio
+  2. Click open
+  3. Navigate to your cloned project repository folder
+  4. Click once Ohjelmistoprojecti folder to highlight it
+  5. Click open button in right bottom corner of window  
+  6. When you get prompted Trust and Open project, Click "Trust Project" button.
+  7. Create
+
   ## Backend is running on railway.app (no need for local deployment)
   
   ## Optionally run backend locally
@@ -30,10 +42,13 @@ Project information
   ### Run Server: 
     $ python backend/djangoproject/manage.py runserver
     
-  ### Check json output
+  ### Check json output at browser
   ![Screen Shot 2022-12-10 at 15 37 57](https://user-images.githubusercontent.com/78311409/206858122-40094a7a-a103-41bc-b00c-1e0a9857e42a.jpeg)
 
-    $ {development server at}pricejson
+    {development server at}pricejson
+  example: 
+    
+    http://127.0.0.1:8000/pricejson
 
   ## Links to deployment servers on railway.app
   
