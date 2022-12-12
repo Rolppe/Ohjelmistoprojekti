@@ -16,7 +16,18 @@
     $ git clone git@github.com:Rolppe/Ohjelmistoprojekti.git
 
   ## Install Android App
-  Instructions here
+  1. Download the apk to your laptop or desktop.
+  2. Plug in your phone via usb 
+  3. Navigate to an easy to find forlder in your mobile device's internal storage (I.E downloads folder)
+  4. Drag and drop the apk into your chosen folder on your mobile device*
+  * alternatively you can send the apk to your mobile decie wirelessly if you prefer, this option of course assumes you know how to do that.
+  5. On your mobile device naviage to the folder you copied the apk into
+  6. Press the apk
+  6.1. You might be required to give permissions to allow you to install an apk from your mobile device's file system
+  6.2 Give permission to your file system to allow it to install apps
+  7. Press install
+  8. Wait for install to finish
+  9. Press "Done", and find the app in your apps list, or press "Open" to open the app straight from the installatin completion dialog. 
 
   ## Open project in Android Studio
   1. Open Android Studio
