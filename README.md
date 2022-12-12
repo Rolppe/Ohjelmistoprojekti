@@ -77,8 +77,6 @@
 
   ## Links to deployment servers on Railway.app
   
-    - JSON request: 
-    https://ohjelmistoprojekti-production.up.railway.app/pricejson/
+  * **JSON request:** https://ohjelmistoprojekti-production.up.railway.app/pricejson/
     
-    - Administration 
-    https://ohjelmistoprojekti-production.up.railway.app/admin/
+  * **Administration:** https://ohjelmistoprojekti-production.up.railway.app/admin/
