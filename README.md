@@ -10,7 +10,7 @@
 
   ## Development instructions
   ### Tools and Software needed
-    Android Studio, VS Code, Git Bash, (for local backend Python 3.9.12)
+    Android Studio (Dolphin | 2021.3.1 (or newer)), VS Code, Git Bash, (for local backend Python 3.9.12)
   
   ### Clone project
     $ git clone git@github.com:Rolppe/Ohjelmistoprojekti.git
