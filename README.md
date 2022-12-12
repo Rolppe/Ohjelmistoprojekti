@@ -26,6 +26,7 @@
   5. Click open button in right bottom corner of window  
   6. When you get prompted Trust and Open project, Click "Trust Project" button.
   7. Create
+  8. Sync project with Gradle files
 
   ## Backend is running on Railway.app (no need for local deployment)
   ### Admin logins:
