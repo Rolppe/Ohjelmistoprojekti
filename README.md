@@ -49,7 +49,7 @@
     
     http://127.0.0.1:8000/pricejson
 
-  ## Links to deployment servers on railway.app
+  ## Links to deployment servers on Railway.app
   
     - JSON request: 
     https://ohjelmistoprojekti-production.up.railway.app/pricejson/
