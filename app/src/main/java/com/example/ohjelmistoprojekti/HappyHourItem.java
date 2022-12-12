@@ -2,24 +2,28 @@ package com.example.ohjelmistoprojekti;
 
 public class HappyHourItem {
     //basic constructor class
-    private String mTitle, mFrom, mTo;
+    private String mTitle, mResult, mPrice, mTimeFrame;
 
-    public HappyHourItem(String title, String from, String to) {
+    public HappyHourItem(String title, String timeframe, String result, String price) {
         mTitle = title;
-        mFrom = from;
-        mTo = to;
+        mTimeFrame = timeframe;
+        mResult = result;
+        mPrice = price;
+
     }
 
     public String getTitle(){
         return mTitle;
     }
 
-    public String getFrom() {
-        return mFrom;
+    public String getResult() {
+        return mResult;
     }
 
-    public String getTo() {
-        return mTo;
+    public String getPrice() {
+        return mPrice;
     }
+
+    public String getTimeFrame() {return mTimeFrame;}
 
 }
