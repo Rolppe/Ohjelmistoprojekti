@@ -1,14 +1,14 @@
 # Ohjelmistoprojekti
 
-Project information
+## Project information
 
-  Project name: Electricity Exchange Price APP
+  **Project name:** Electricity Exchange Price APP
     
-  Project description: Android APP for checking 
+  **Project description:** An Android application for checking 
     electricity prices and extracting best prices 
-    to run electrical devises. It also includes price alerts
+    to run electrical devices. The app also includes price alerts.
     
-  Team members: Mikko Paaso, Daniil Kovalev, Waltteri Lehtinen
+  **Team members:** Mikko Paaso, Daniil Kovalev, Waltteri Lehtinen
   
   ## Development instructions
   ### Tools and Software needed
@@ -29,9 +29,9 @@ Project information
   6. When you get prompted Trust and Open project, Click "Trust Project" button.
   7. Create
 
-  ## Backend is running on railway.app (no need for local deployment)
+  ## Backend is running on Railway.app (no need for local deployment)
   
-  ## Optionally run backend locally
+  ## Optionally you can deploy the backend locally as follows
   
   ### Enter project folder
     $ cd Ohjelmistoprojekti
@@ -45,8 +45,9 @@ Project information
   ### Check json output at browser
   ![Screen Shot 2022-12-10 at 15 37 57](https://user-images.githubusercontent.com/78311409/206858122-40094a7a-a103-41bc-b00c-1e0a9857e42a.jpeg)
 
-    {development server at}pricejson
-  example: 
+    < development server at >/pricejson
+
+  example:
     
     http://127.0.0.1:8000/pricejson
 
