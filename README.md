@@ -24,7 +24,7 @@
   6. Press the apk  
   6.1. You might be required to give permissions to allow you to install an apk from your mobile device's file system  
   6.2 Give permission to your file system to allow it to install apps
-  7. Press install
+  7. Press "Install"
   8. Wait for install to finish
   9. Press "Done", and find the app in your apps list, or press "Open" to open the app straight from the installatin completion dialog. 
 
