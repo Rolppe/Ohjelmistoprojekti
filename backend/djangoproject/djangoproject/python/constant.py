@@ -1,1 +1,2 @@
 TOKEN = '8523bda7-9f7c-4b73-8bea-d83f4fdb9159'
+ALV_MULTIPLIER = 1.1

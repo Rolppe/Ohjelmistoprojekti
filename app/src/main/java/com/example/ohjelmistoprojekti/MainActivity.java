@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Replacing view with homefrag on startup
+        //Replacing view with HomeFragment on startup
         replaceFragment(homeFragment);
         //Initializing the nav bar
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
