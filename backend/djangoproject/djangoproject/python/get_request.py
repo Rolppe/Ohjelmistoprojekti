@@ -59,7 +59,7 @@ def addNewEntry(datapoints,date):
   for _ in range(23):
     dp.pop(0) # pop out 23 first ones...
 
-  dp.pop(23) # ...and the last one
+  dp.pop() # ...and the last one
 
   # save the correct day prices to DayPrice object
   price_instance = DayPrices.objects.create(
