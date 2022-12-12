@@ -2,14 +2,12 @@
 
 ## Project information
 
-  **Project name:** Electricity Exchange Price APP
-    
-  **Project description:** An Android application for checking 
-    electricity prices and extracting best prices 
-    to run electrical devices. The app also includes price alerts.
-    
-  **Team members:** Mikko Paaso, Daniil Kovalev, Waltteri Lehtinen
-  
+| Info | Description|
+| ------ | ----------- |
+| Project name | Electricity Exchange Price App |
+| Project description | An Android application for checking electricity prices<br>and extracting best prices to run electrical devices.<br>The app also includes price alerts. |
+| Team members | Mikko Paaso, Daniil Kovalev, Waltteri Lehtinen |
+
   ## Development instructions
   ### Tools and Software needed
     Android Studio, VS Code, Git Bash, (for local backend Python 3.9.12)
