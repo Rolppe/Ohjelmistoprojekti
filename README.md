@@ -5,7 +5,7 @@
 | Info | Description|
 | ------ | ----------- |
 | Project name | Electricity Exchange Price App |
-| Project description | An Android application for checking electricity prices<br>and extracting hours with the lowest prices to run electrical devices.<br>The app also includes price alerts. |
+| Project description | An Android application for checking electricity prices<br>with an ability to extract current day's hours<br>with the lowest prices to run electrical devices. |
 | Team members | Mikko Paaso, Daniil Kovalev, Waltteri Lehtinen |
 
   ## Development instructions
@@ -28,10 +28,20 @@
   7. Create
 
   ## Backend is running on Railway.app (no need for local deployment)
+  ### Admin logins:
+  
+  **Webpage address:**
+  https://ohjelmistoprojekti-production.up.railway.app/admin/
+  
+  **Username:** mikko
+  
+  **Password:** ohjelmistoprojekti2022
+  
+  **NOTICE:** At admin page Day prices includes all the price data
   
   ## Optionally you can deploy the backend locally as follows
   
-  ### Enter project folder
+  ### Enter the project folder
     $ cd Ohjelmistoprojekti
   
   ### Activate virtual environment: 
@@ -40,7 +50,7 @@
   ### Run Server: 
     $ python backend/djangoproject/manage.py runserver
     
-  ### Check json output at browser
+  ### Check JSON output at browser
   ![Screen Shot 2022-12-10 at 15 37 57](https://user-images.githubusercontent.com/78311409/206858122-40094a7a-a103-41bc-b00c-1e0a9857e42a.jpeg)
 
     < development server at >/pricejson
@@ -48,6 +58,22 @@
   example:
     
     http://127.0.0.1:8000/pricejson
+  
+  ### Admin logins:
+  
+  **Webpage address:**
+  
+      < development server at >/admin
+
+  example:
+    
+    http://127.0.0.1:8000/admin/
+  
+  **Username:** mikko
+  
+  **Password:** ohjelmistoprojekti2022
+  
+  **NOTICE:** At admin page Day prices includes all the price data
 
   ## Links to deployment servers on Railway.app
   
