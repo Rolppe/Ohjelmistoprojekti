@@ -27,7 +27,7 @@ import java.util.Date;
 
 
 public class SettingsFragment extends Fragment {
-
+    /*
     double[] pricesToday;
     double[] pricesTomorrow;
     Switch notificationSwitch;
@@ -36,12 +36,12 @@ public class SettingsFragment extends Fragment {
     boolean found = false;
     String CHANNEL_ID = "Notif1";
     String priceString = "1";
-    @Override
+    @Override*/
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-
+        /*
         notificationSwitch = (Switch) view.findViewById(R.id.Notif_Switch);
         priceAlertSwitch = (Switch) view.findViewById(R.id.Price_Alert_Switch);
         inputPrice = (EditText) view.findViewById(R.id.etPrice);
@@ -124,9 +124,10 @@ public class SettingsFragment extends Fragment {
                     }
                 }
             }
-        });
+        });*/
         return view;
     }
+    /*
     //getting prices via singleton function and setting the prices into local arrays
     private void getPrices(){
         Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
@@ -154,7 +155,7 @@ public class SettingsFragment extends Fragment {
             builder.append(" ").append(k).append(" ");
         }
         Toast.makeText(getActivity().getApplicationContext(), additionalText + builder, Toast.LENGTH_LONG).show();
-    }*/
+    }
 
     //creating notification channels
     private void createNotificationChannel1() {
@@ -170,7 +171,6 @@ public class SettingsFragment extends Fragment {
         NotificationManager manager = getActivity().getSystemService(NotificationManager.class);
         manager.createNotificationChannel(channel2);
     }
-
-
+    */
 }
 

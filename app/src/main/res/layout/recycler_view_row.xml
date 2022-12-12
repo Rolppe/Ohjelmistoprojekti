@@ -16,7 +16,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/fromTextView"
         app:layout_constraintTop_toTopOf="@+id/fromTextView">
 
@@ -36,66 +36,104 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="Change"
+            android:text="@string/tvChange"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/editFrom"
+            android:id="@+id/timeFrameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="66dp"
-            android:text="Change"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/tvInput"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/editTitle"
+
+            app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
         <TextView
-            android:id="@+id/toTextView"
+            android:id="@+id/editTimeFrame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:text="To:"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/tvChange"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fromTextView"
+
+            app:layout_constraintStart_toEndOf="@+id/timeFrameTextView"
             app:layout_constraintTop_toBottomOf="@+id/editTitle" />
+
+        <TextView
+            android:id="@+id/editFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/tvChange"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/fromTextView"
+            app:layout_constraintTop_toBottomOf="@+id/timeFrameTextView" />
 
         <TextView
             android:id="@+id/fromTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
-            android:text="From:"
+            android:text="@string/tvResult"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+
             app:layout_constraintEnd_toStartOf="@+id/editFrom"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/editTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/timeFrameTextView" />
+
 
         <TextView
-            android:id="@+id/editTo"
+            android:id="@+id/priceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/tvPrice"
+            android:textSize="20sp"
+
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/fromTextView" />
+
+        <TextView
+            android:id="@+id/editPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="Change"
+            android:layout_marginTop="10dp"
+            android:text="@string/tvChange"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/toTextView"
-            app:layout_constraintTop_toBottomOf="@+id/editTitle" />
+            app:layout_constraintStart_toEndOf="@+id/priceTextView"
+            app:layout_constraintTop_toBottomOf="@+id/fromTextView" />
+
+        <TextView
+            android:id="@+id/priceDenomination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:text="c/kWh"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/editPrice"
+
+            app:layout_constraintTop_toBottomOf="@+id/fromTextView" />
 
         <ImageButton
             android:id="@+id/deleteButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="127dp"
+            android:layout_marginStart="180dp"
             android:layout_marginBottom="7dp"
-            app:layout_constraintBottom_toTopOf="@+id/editTo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/editTitle"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_delete"
             android:background="@null"/>

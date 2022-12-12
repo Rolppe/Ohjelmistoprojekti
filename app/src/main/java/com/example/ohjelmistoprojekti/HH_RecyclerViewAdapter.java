@@ -22,15 +22,16 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
         // grabbing views from recycler_view_row layout file
         // acting as an onCreate method (bad analogy)
 
-        TextView mTitle, mFrom, mTo;
+        TextView mTitle, mResult, mPrice, mTimeFrame;
         ImageButton delBtn;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             //inits
             mTitle = itemView.findViewById(R.id.editTitle);
-            mFrom = itemView.findViewById(R.id.editFrom);
-            mTo = itemView.findViewById(R.id.editTo);
+            mTimeFrame = itemView.findViewById(R.id.editTimeFrame);
+            mResult = itemView.findViewById(R.id.editFrom);
+            mPrice = itemView.findViewById(R.id.editPrice);
             delBtn = itemView.findViewById(R.id.deleteButton);
 
         }
@@ -56,15 +57,16 @@ public class HH_RecyclerViewAdapter extends RecyclerView.Adapter<HH_RecyclerView
         // assigning values to views created in the recycler_view_row layout file
         // based on the position of the recycler view
         holder.mTitle.setText(happyHourList.get(position).getTitle());
-        holder.mFrom.setText(happyHourList.get(position).getFrom());
-        holder.mTo.setText(happyHourList.get(position).getTo());
+        holder.mTimeFrame.setText(happyHourList.get(position).getTimeFrame());
+        holder.mResult.setText(happyHourList.get(position).getResult());
+        holder.mPrice.setText(happyHourList.get(position).getPrice());
         holder.delBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HappyHourItem delItem = happyHourList.get(position);
-                // removeing item from data base
-                happyHourList.remove(position);  // remove the item from list
-                notifyItemRemoved(position); // notify the adapter about the removed item
+                HappyHourItem delItem = happyHourList.get(holder.getAdapterPosition());
+                // removing item from data base
+                happyHourList.remove(delItem);  // remove the item from list
+                notifyItemRemoved(holder.getAdapterPosition()); // notify the adapter about the removed item
             }
         });
     }

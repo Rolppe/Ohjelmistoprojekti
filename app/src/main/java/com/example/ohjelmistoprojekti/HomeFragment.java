@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -40,11 +42,21 @@ public class HomeFragment extends Fragment {
         barChartToday.setFitBars(true);
         barChartToday.setDrawGridBackground(false);
         barChartToday.getDescription().setEnabled(false);
+        barChartToday.getXAxis().setDrawGridLines(true);
+        barChartToday.getAxisRight().setDrawLabels(false);
+        barChartToday.getAxisRight().setDrawGridLines(false);
+        barChartToday.getAxisLeft().setDrawLabels(false);
+        barChartToday.getAxisLeft().setDrawGridLines(false);
 
         barChartTomorrow = (BarChart) view.findViewById(R.id.Chart2);
         barChartTomorrow.setFitBars(true);
         barChartTomorrow.setDrawGridBackground(false);
         barChartTomorrow.getDescription().setEnabled(false);
+        barChartTomorrow.getXAxis().setDrawGridLines(true);
+        barChartTomorrow.getAxisRight().setDrawLabels(false);
+        barChartTomorrow.getAxisRight().setDrawGridLines(false);;
+        barChartTomorrow.getAxisLeft().setDrawLabels(false);
+        barChartTomorrow.getAxisLeft().setDrawGridLines(false);
         //if async data has not been gotten yet, get data and draw graphs using that data
         getPrices();
         return view;
@@ -100,11 +112,11 @@ public class HomeFragment extends Fragment {
                     BarDataSet barDataSet1 = new BarDataSet(BarToday, "Today");
                     BarData barData = new BarData(barDataSet1);
                     barDataSet1.setColors(ColorTemplate.MATERIAL_COLORS);
-                    barDataSet1.setValueTextColor(Color.parseColor("#ceccd2"));
+                    barDataSet1.setValueTextColor(Color.parseColor("#9e9e9d"));
                     barDataSet1.setValueTextSize(8f);
+                    barChartToday.getXAxis().setPosition(XAxis.XAxisPosition.TOP);
+
                     barChartToday.setData(barData);
-                    barChartToday.setDrawGridBackground(false);
-                    barChartToday.getDescription().setEnabled(false);
                     barChartToday.notifyDataSetChanged();
                     barChartToday.invalidate();
                 } catch (NegativeArraySizeException negativeArraySizeException) {
@@ -116,11 +128,9 @@ public class HomeFragment extends Fragment {
                     BarDataSet barDataSet2 = new BarDataSet(BarTomorrow, "Tomorrow");
                     BarData barData = new BarData(barDataSet2);
                     barDataSet2.setColors(ColorTemplate.MATERIAL_COLORS);
-                    barDataSet2.setValueTextColor(Color.parseColor("#ceccd2"));
+                    barDataSet2.setValueTextColor(Color.parseColor("#9e9e9d"));
                     barDataSet2.setValueTextSize(8f);
                     barChartTomorrow.setData(barData);
-                    barChartTomorrow.setDrawGridBackground(false);
-                    barChartTomorrow.getDescription().setEnabled(false);
                     barChartTomorrow.notifyDataSetChanged();
                     barChartTomorrow.invalidate();
                 } catch (NegativeArraySizeException negativeArraySizeException) {
@@ -131,6 +141,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    /*
     // Function for toasting price arrays
     public void toastPrices(double[] pricesArray, String additionalText,String date) {
         // Create stringBuilder
@@ -144,5 +155,5 @@ public class HomeFragment extends Fragment {
 
         // Toasting StringBuilder + additional text
         Toast.makeText(getActivity().getApplicationContext(), additionalText + builder, Toast.LENGTH_LONG).show();
-    }
+    }*/
 }

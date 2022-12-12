@@ -34,51 +34,41 @@
 
 
     <TextView
-        android:id="@+id/dialogTvFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/dialogTvTimeRange"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="35dp"
-        android:layout_marginStart="70dp"
-        android:text="@string/edtTvFrom"
-        android:textSize="24sp" />
-
-    <TextView
         android:id="@+id/dialogTvTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/dialogTvTimeRange"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="70dp"
-        android:text="@string/edtTvTo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="@string/tvTo"
         android:textSize="24sp" />
 
-    <TimePicker
+    <NumberPicker
         android:id="@+id/enterFrom"
-        android:layout_width="160dp"
+        android:layout_width="120dp"
         android:layout_height="100dp"
-        android:layout_alignTop="@+id/dialogTvFrom"
+        android:layout_alignTop="@+id/dialogTvTimeRange"
         android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:inputType="time"
         android:timePickerMode="spinner" />
 
-    <TimePicker
+    <NumberPicker
         android:id="@+id/enterTo"
-        android:layout_width="160dp"
+        android:layout_width="120dp"
         android:layout_height="100dp"
-        android:layout_alignTop="@+id/dialogTvTo"
+        android:layout_alignTop="@+id/dialogTvTimeRange"
         android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="40dp"
         android:inputType="time"
         android:timePickerMode="spinner" />
 
     <NumberPicker
         android:id="@+id/enterPrgrmLgth"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
         android:layout_alignTop="@+id/dialogTvDuration"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
@@ -90,7 +80,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/dialogTvTimeRange"
-
         android:layout_centerHorizontal="true"
         android:layout_marginTop="170dp"
         android:text="@string/edtTvDuration"
@@ -103,7 +92,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:text="Time Range"
+        android:text="@string/tvRange"
         android:textSize="24sp"/>
 
 
