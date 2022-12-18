@@ -38,7 +38,7 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 # Adding server to CSRF_TRUSTED_ORIGINS
-CSRF_TRUSTED_ORIGINS = ['https://ohjelmistoprojekti-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://ohjelmistoprojekti-production.up.railway.app', 'https://web-project-production-8cef.up.railway.app']
 
 
 # Application definition
