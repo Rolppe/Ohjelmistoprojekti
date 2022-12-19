@@ -35,11 +35,11 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
   'http://localhost:3000',
-  'https://web-project-production-8cef.up.railway.app',
+  'https://web-project.up.railway.app',
 )
 
 # Adding server to CSRF_TRUSTED_ORIGINS
-CSRF_TRUSTED_ORIGINS = ['https://ohjelmistoprojekti-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://ohjelmistoprojekti.up.railway.app']
 
 
 # Application definition
